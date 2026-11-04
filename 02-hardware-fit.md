@@ -1,9 +1,9 @@
-# 02 — Will it fit? Hardware-fit arithmetic
+# 02: Will it fit? Hardware-fit arithmetic
 
 Four budgets decide everything. Learn these once and you can judge any model
-on HuggingFace against any machine — including ones that don't exist yet.
+on HuggingFace against any machine, including ones that don't exist yet.
 
-## 1. Weights — the file size
+## 1. Weights: the file size
 
 ```
 GB ≈ total_params × bpw / 8
@@ -16,7 +16,7 @@ GB ≈ total_params × bpw / 8
 You rarely need to compute this: **the GGUF file size on HuggingFace is the answer.**
 The formula is for planning quants that don't exist yet.
 
-## 2. KV cache — the context tax
+## 2. KV cache: the context tax
 
 Every token of context costs cache memory:
 
@@ -36,12 +36,12 @@ Two levers, both free:
 
 - **`-ctk q8_0 -ctv q8_0`** halves KV memory with negligible quality cost.
 - **Hybrid (linear-attention/SSM) architectures** pay per-layer *state*, not
-  per-token cache — that's why the fleet reaches 262k context in 16GB.
+  per-token cache, that's why the fleet reaches 262k context in 16GB.
 
-Modern llama.cpp prints the exact KV buffer size in the boot log — check it
+Modern llama.cpp prints the exact KV buffer size in the boot log, check it
 rather than trusting arithmetic (rule #5 below).
 
-## 3. Overhead — the stuff people forget
+## 3. Overhead: the stuff people forget
 
 Add to weights + KV:
 
@@ -54,7 +54,7 @@ Add to weights + KV:
 | Ubatch prefill buffers (`-ub 512…2048`) | 0.5–2.9GB (prefill only) |
 | MTP head, if baked into the GGUF | ~0.2GB |
 
-## 4. Speed — bandwidth and *active* parameters
+## 4. Speed: bandwidth and *active* parameters
 
 Decode speed ≈ memory bandwidth ÷ bytes-read-per-token, and for MoE models the
 bytes that matter are the **active** parameters (the `A3B` in "35B-A3B" = only
@@ -67,7 +67,7 @@ ceiling ≈ bandwidth / (active_params × bpw / 8)
 - 35B-**A3B** at 3.5bpw → ~1.3GB/token:
   5060 Ti (448GB/s) → ceiling ~340 tok/s; real-world 40–60% → **60–140 tok/s measured** with
   speculative decoding.
-- Same model on a CPU (DDR5 ~80GB/s) → real-world **15–25 tok/s** — still usable!
+- Same model on a CPU (DDR5 ~80GB/s) → real-world **15–25 tok/s**, still usable!
   This is why A3B MoE is the CPU laptop sweet spot.
 - Dense 9B (~5.5GB/token) on that CPU → **5–12 tok/s** (est.).
 
@@ -83,7 +83,7 @@ Sage A1.5 (14.18GB weights) at 131k context on the 28GB dual-GPU rig:
 ```
 
 The same model on a single 16GB eGPU: drop context to ~65–100k or shave with
-lower ubatch — still fits. On a 32GB-RAM laptop (CPU-only): fits, runs ~15–25 tok/s.
+lower ubatch: still fits. On a 32GB-RAM laptop (CPU-only): fits, runs ~15–25 tok/s.
 
 ## Tier fit table
 
@@ -96,9 +96,9 @@ lower ubatch — still fits. On a 32GB-RAM laptop (CPU-only): fits, runs ~15–2
 | eGPU 16GB | 16GB | 35B-A3B MiniPlus | ≤229k (hybrid) |
 | eGPU 32GB / dual-GPU 28GB | 28GB+ | everything (Tier A + B) | 229–262k |
 
-## Rule #5 — boot and read the log
+## Rule #5: boot and read the log
 
 Arithmetic gets you *in range*; the boot test decides. `llama-server` prints exact
 buffer sizes, KV size, and per-device splits at startup. If it boots with GB of
 headroom you can raise `-c`; if it OOMs, drop context or `-ub`. A crash is a
-finding, not a failure — record the margin that worked.
+finding, not a failure, record the margin that worked.

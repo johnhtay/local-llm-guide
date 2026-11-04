@@ -1,9 +1,9 @@
-# 04 — OpenCode: the agent on top
+# 04: OpenCode: the agent on top
 
 [OpenCode](https://opencode.ai) is a terminal coding agent: it reads your repo, edits
-files, runs tools, and answers — with **any** OpenAI-compatible model behind it,
-including the local `llama-server` from [03](03-llamacpp-server.md). The same tips
-extend it with MCP tools, skills, and plugins, and let local and cloud models live
+files, runs tools, and answers, with **any** OpenAI-compatible model behind it,
+including the local `llama-server` from [03](03-llamacpp-server.md). The same guide
+shows how to extend it with MCP tools, skills, and plugins, and let local and cloud models live
 side by side.
 
 ## Install and first run
@@ -19,7 +19,7 @@ check it with `opencode service status`. No API key needed for a local server.
 ## Point it at your local server
 
 Configuration lives in `~/.config/opencode/opencode.jsonc` (global) and/or
-`.opencode/opencode.jsonc` (project). Real example — the 9B provider, verbatim from
+`.opencode/opencode.jsonc` (project). Real example: the 9B provider, verbatim from
 the lead tester's config (URL uses `127.0.0.1` when both run on the same machine;
 a WSL↔Windows split uses the host gateway IP instead):
 
@@ -47,13 +47,13 @@ a WSL↔Windows split uses the host gateway IP instead):
 
 Two details that matter:
 
-- **`limit.context` must match the server's `-c`** (or be lower) — the agent plans
+- **`limit.context` must match the server's `-c`** (or be lower), the agent plans
   around it.
-- **Config edits hot-reload** — no restart needed; `/reload` forces a full one.
+- **Config edits hot-reload**, no restart needed; `/reload` forces a full one.
   Declare what the model can actually do (`capabilities.input: ["text"]` vs
   `["text","image"]`) or you'll chase 400 errors on image paste.
 
-## MCP — give the agent tools
+## MCP: give the agent tools
 
 MCP servers add tools (search, PubMed, databases…). Remote servers are one command:
 
@@ -62,7 +62,7 @@ opencode mcp add <name> --global --url <https://server-url>
 opencode mcp list
 ```
 
-Local (command-based) servers are a JSONC entry — real example, the PubMed server
+Local (command-based) servers are a JSONC entry, real example, the PubMed server
 (twelve research tools; note it requires Node ≥ 24):
 
 ```jsonc
@@ -83,9 +83,9 @@ Note the layering: [03](03-llamacpp-server.md) gave the *server* its own MCP too
 (used by llama-server's web UI); OpenCode's MCP is client-side and used by the agent.
 Both can run simultaneously.
 
-## Skills — reusable playbooks
+## Skills: reusable playbooks
 
-A skill is a `SKILL.md` the model loads on demand when relevant — instructions plus
+A skill is a `SKILL.md` the model loads on demand when relevant, instructions plus
 supporting files, without bloating every prompt.
 
 ```text
@@ -94,11 +94,11 @@ supporting files, without bloating every prompt.
     └── SKILL.md         ← frontmatter: name + one-line "when to use" description
 ```
 
-Load manually by mentioning `@beastx-xml` in a prompt. Built-ins load automatically —
+Load manually by mentioning `@beastx-xml` in a prompt. Built-ins load automatically,
 the lead tester's daily set includes `ponytail` (concise dev mode), `beastx-xml`,
 `beastx-mmm` (BEASTX model configs), `d3-diagrams`, `pubmed` workflow helpers.
 
-## Plugins — extend the agent itself
+## Plugins: extend the agent itself
 
 Plugins are npm packages that hook sessions, transform tool calls, or add TUI
 elements. Config (canonical V2 field):
@@ -111,7 +111,7 @@ The lead tester runs an agent-memory plugin (persistent notes across sessions) a
 ponytail (minimal-change coding mode). Writing your own is documented at
 [opencode.ai/v2/docs/build/plugins](https://opencode.ai/v2/docs/build/plugins).
 
-## Permissions — gate what the agent may do
+## Permissions: gate what the agent may do
 
 ```jsonc
 "permissions": [
@@ -122,7 +122,7 @@ ponytail (minimal-change coding mode). Writing your own is documented at
 Effects: `allow` / `ask` / `deny`, last matching rule wins. Start with `ask`
 everywhere and relax as trust grows.
 
-## Long sessions — compaction
+## Long sessions: compaction
 
 Long sessions auto-compact (summarized and continued). One knob worth knowing:
 
@@ -151,5 +151,5 @@ cloud endpoints behind one key, so OpenCode treats them like another provider:
 
 Now `Tab` in the TUI switches between e.g. `qwen-local-9b/qwen3.8-9b` and
 `litellm/big`. Keep credentials in the proxy's env file, never in `opencode.jsonc`;
-one diagnostic gotcha: `/v1/models` answers even with a bad key — test auth with
+one diagnostic gotcha: `/v1/models` answers even with a bad key: test auth with
 `/v1/chat/completions` instead.
