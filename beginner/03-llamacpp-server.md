@@ -1,4 +1,4 @@
-# 03: Run the model (15 minutes)
+# 03: Run the model
 
 [llama.cpp](https://github.com/ggml-org/llama.cpp) is a free program that runs model
 files. `llama-server` starts it as a small web service on your own computer, with a
@@ -41,3 +41,7 @@ answers start streaming immediately.
   range for work. Leave the rest at defaults.
 - This page is only for chatting. For an assistant that can read and edit your
   files, continue to [04-opencode.md](04-opencode.md).
+
+---
+
+*Unfamiliar words? One-line explanations in the [glossary](glossary.md).*

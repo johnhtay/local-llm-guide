@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="390" viewBox="0 0 1000 390" font-family="DejaVu Sans, sans-serif">
+<rect width="1000" height="390" fill="#ffffff"/>
+<text x="16" y="30" font-size="19" font-weight="bold" fill="#111">What fits in the memory budget</text>
+<text x="16" y="52" font-size="12.5" fill="#444">GB per machine; green = context (the model's working memory) at 131k tokens; rig row = chapter 02's measured worked example.</text>
+<text x="332" y="93.5" font-size="12.5" fill="#222" text-anchor="end">Laptop, 8GB RAM</text>
+<text x="332" y="108.5" font-size="10.5" fill="#666" text-anchor="end">tiny 3-4B models only; this guide assumes 16GB+</text>
+<rect x="340.0" y="78" width="58.0" height="22" fill="#94a3b8" rx="2"/>
+<rect x="398.0" y="78" width="66.2" height="22" fill="#3572a5" rx="2"/>
+<rect x="464.2" y="78" width="8.3" height="22" fill="#2ea043" rx="2"/>
+<rect x="472.5" y="78" width="1.0" height="22" fill="#eef1f5" rx="2"/>
+<text x="479.5" y="93.0" font-size="12" fill="#111">no headroom</text>
+<text x="332" y="131.5" font-size="12.5" fill="#222" text-anchor="end">Laptop, 16GB RAM</text>
+<text x="332" y="146.5" font-size="10.5" fill="#666" text-anchor="end">9B class; Q4_K_M is the everyday pick</text>
+<rect x="340.0" y="116" width="74.5" height="22" fill="#94a3b8" rx="2"/>
+<rect x="414.5" y="116" width="125.9" height="22" fill="#3572a5" rx="2"/>
+<text x="477.5" y="131.0" font-size="10.5" fill="#fff" text-anchor="middle">9B Q6_K</text>
+<rect x="540.4" y="116" width="23.2" height="22" fill="#2ea043" rx="2"/>
+<rect x="563.6" y="116" width="41.4" height="22" fill="#eef1f5" rx="2"/>
+<text x="611.0" y="131.0" font-size="12" fill="#111">free 2.5GB</text>
+<text x="332" y="169.5" font-size="12.5" fill="#222" text-anchor="end">Laptop, 32GB RAM</text>
+<text x="332" y="184.5" font-size="10.5" fill="#666" text-anchor="end">the A3B MoE sweet spot</text>
+<rect x="340.0" y="154" width="74.5" height="22" fill="#94a3b8" rx="2"/>
+<rect x="414.5" y="154" width="251.8" height="22" fill="#3572a5" rx="2"/>
+<text x="540.4" y="169.0" font-size="10.5" fill="#fff" text-anchor="middle">35B-A3B MiniPlus</text>
+<rect x="666.3" y="154" width="23.2" height="22" fill="#2ea043" rx="2"/>
+<rect x="689.5" y="154" width="180.5" height="22" fill="#eef1f5" rx="2"/>
+<text x="876.0" y="169.0" font-size="12" fill="#111">free 10.9GB</text>
+<text x="332" y="207.5" font-size="12.5" fill="#222" text-anchor="end">Mac, 32GB (unified)</text>
+<text x="332" y="222.5" font-size="10.5" fill="#666" text-anchor="end">one memory pool, all on GPU</text>
+<rect x="340.0" y="192" width="74.5" height="22" fill="#94a3b8" rx="2"/>
+<rect x="414.5" y="192" width="251.8" height="22" fill="#3572a5" rx="2"/>
+<text x="540.4" y="207.0" font-size="10.5" fill="#fff" text-anchor="middle">35B-A3B MiniPlus</text>
+<rect x="666.3" y="192" width="23.2" height="22" fill="#2ea043" rx="2"/>
+<rect x="689.5" y="192" width="180.5" height="22" fill="#eef1f5" rx="2"/>
+<text x="876.0" y="207.0" font-size="12" fill="#111">free 10.9GB</text>
+<text x="332" y="245.5" font-size="12.5" fill="#222" text-anchor="end">Single 16GB GPU (eGPU)</text>
+<text x="332" y="260.5" font-size="10.5" fill="#666" text-anchor="end">tight; no vision projector</text>
+<rect x="340.0" y="230" width="6.6" height="22" fill="#94a3b8" rx="2"/>
+<rect x="346.6" y="230" width="235.2" height="22" fill="#3572a5" rx="2"/>
+<text x="464.2" y="245.0" font-size="10.5" fill="#fff" text-anchor="middle">Sage A1.5</text>
+<rect x="581.8" y="230" width="23.2" height="22" fill="#2ea043" rx="2"/>
+<rect x="605.0" y="230" width="1.0" height="22" fill="#eef1f5" rx="2"/>
+<text x="612.0" y="245.0" font-size="12" fill="#111">no headroom</text>
+<text x="332" y="283.5" font-size="12.5" fill="#222" text-anchor="end">The lab rig: 28GB, 2 GPUs</text>
+<text x="332" y="298.5" font-size="10.5" fill="#666" text-anchor="end">Sage A1.5 + vision + MTP: ch 02's worked example</text>
+<rect x="340.0" y="268" width="24.8" height="22" fill="#94a3b8" rx="2"/>
+<rect x="364.8" y="268" width="235.2" height="22" fill="#3572a5" rx="2"/>
+<text x="482.4" y="283.0" font-size="10.5" fill="#fff" text-anchor="middle">Sage A1.5</text>
+<rect x="600.0" y="268" width="13.2" height="22" fill="#d29922" rx="2"/>
+<rect x="613.3" y="268" width="23.2" height="22" fill="#2ea043" rx="2"/>
+<rect x="636.5" y="268" width="34.8" height="22" fill="#e07b39" rx="2"/>
+<rect x="671.2" y="268" width="132.5" height="22" fill="#eef1f5" rx="2"/>
+<text x="809.8" y="283.0" font-size="12" fill="#111">free 8.0GB</text>
+<line x1="340" y1="72" x2="340" y2="290" stroke="#999"/>
+<line x1="406" y1="72" x2="406" y2="290" stroke="#eee"/>
+<line x1="472" y1="72" x2="472" y2="290" stroke="#eee"/>
+<line x1="539" y1="72" x2="539" y2="290" stroke="#eee"/>
+<line x1="605" y1="72" x2="605" y2="290" stroke="#eee"/>
+<line x1="671" y1="72" x2="671" y2="290" stroke="#eee"/>
+<line x1="738" y1="72" x2="738" y2="290" stroke="#eee"/>
+<line x1="804" y1="72" x2="804" y2="290" stroke="#eee"/>
+<line x1="870" y1="72" x2="870" y2="290" stroke="#eee"/>
+<text x="406" y="304" font-size="10.5" fill="#666" text-anchor="middle">4</text>
+<text x="472" y="304" font-size="10.5" fill="#666" text-anchor="middle">8</text>
+<text x="539" y="304" font-size="10.5" fill="#666" text-anchor="middle">12</text>
+<text x="605" y="304" font-size="10.5" fill="#666" text-anchor="middle">16</text>
+<text x="671" y="304" font-size="10.5" fill="#666" text-anchor="middle">20</text>
+<text x="738" y="304" font-size="10.5" fill="#666" text-anchor="middle">24</text>
+<text x="804" y="304" font-size="10.5" fill="#666" text-anchor="middle">28</text>
+<text x="870" y="304" font-size="10.5" fill="#666" text-anchor="middle">32</text>
+<text x="344" y="322" font-size="11" fill="#666">gigabytes of memory</text>
+<rect x="16" y="356" width="11" height="11" fill="#94a3b8" rx="2"/>
+<text x="32" y="365" font-size="11" fill="#333">OS + desktop</text>
+<rect x="154" y="356" width="11" height="11" fill="#3572a5" rx="2"/>
+<text x="170" y="365" font-size="11" fill="#333">model file (GGUF)</text>
+<rect x="332" y="356" width="11" height="11" fill="#d29922" rx="2"/>
+<text x="348" y="365" font-size="11" fill="#333">vision projector</text>
+<rect x="502" y="356" width="11" height="11" fill="#2ea043" rx="2"/>
+<text x="518" y="365" font-size="11" fill="#333">context cache</text>
+<rect x="648" y="356" width="11" height="11" fill="#e07b39" rx="2"/>
+<text x="664" y="365" font-size="11" fill="#333">speed extras</text>
+<rect x="786" y="356" width="11" height="11" fill="#eef1f5" rx="2"/>
+<text x="802" y="365" font-size="11" fill="#333">free</text>
+</svg>

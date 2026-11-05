@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="314" viewBox="0 0 1000 314" font-family="DejaVu Sans, sans-serif">
+<rect width="1000" height="314" fill="#ffffff"/>
+<text x="16" y="30" font-size="19" font-weight="bold" fill="#111">What fits in the memory budget</text>
+<text x="16" y="52" font-size="12.5" fill="#444">What each machine keeps for itself, what the model file takes, what context adds, and what is left over.</text>
+<text x="332" y="93.5" font-size="12.5" fill="#222" text-anchor="end">Laptop, 16GB RAM</text>
+<text x="332" y="108.5" font-size="10.5" fill="#666" text-anchor="end">the everyday 9B</text>
+<rect x="340.0" y="78" width="74.5" height="22" fill="#94a3b8" rx="2"/>
+<rect x="414.5" y="78" width="125.9" height="22" fill="#3572a5" rx="2"/>
+<text x="477.5" y="93.0" font-size="10.5" fill="#fff" text-anchor="middle">9B Q6_K</text>
+<rect x="540.4" y="78" width="23.2" height="22" fill="#2ea043" rx="2"/>
+<rect x="563.6" y="78" width="41.4" height="22" fill="#eef1f5" rx="2"/>
+<text x="611.0" y="93.0" font-size="12" fill="#111">free 2.5GB</text>
+<text x="332" y="131.5" font-size="12.5" fill="#222" text-anchor="end">Laptop, 32GB RAM</text>
+<text x="332" y="146.5" font-size="10.5" fill="#666" text-anchor="end">the sweet spot</text>
+<rect x="340.0" y="116" width="74.5" height="22" fill="#94a3b8" rx="2"/>
+<rect x="414.5" y="116" width="251.8" height="22" fill="#3572a5" rx="2"/>
+<text x="540.4" y="131.0" font-size="10.5" fill="#fff" text-anchor="middle">35B MoE</text>
+<rect x="666.3" y="116" width="23.2" height="22" fill="#2ea043" rx="2"/>
+<rect x="689.5" y="116" width="180.5" height="22" fill="#eef1f5" rx="2"/>
+<text x="876.0" y="131.0" font-size="12" fill="#111">free 10.9GB</text>
+<text x="332" y="169.5" font-size="12.5" fill="#222" text-anchor="end">A 16GB GPU</text>
+<text x="332" y="184.5" font-size="10.5" fill="#666" text-anchor="end">tight: no headroom</text>
+<rect x="340.0" y="154" width="6.6" height="22" fill="#94a3b8" rx="2"/>
+<rect x="346.6" y="154" width="235.2" height="22" fill="#3572a5" rx="2"/>
+<text x="464.2" y="169.0" font-size="10.5" fill="#fff" text-anchor="middle">Sage A1.5</text>
+<rect x="581.8" y="154" width="23.2" height="22" fill="#2ea043" rx="2"/>
+<rect x="605.0" y="154" width="1.0" height="22" fill="#eef1f5" rx="2"/>
+<text x="612.0" y="169.0" font-size="12" fill="#111">no headroom</text>
+<text x="332" y="207.5" font-size="12.5" fill="#222" text-anchor="end">The lab rig, 28GB</text>
+<text x="332" y="222.5" font-size="10.5" fill="#666" text-anchor="end">the author's actual rig</text>
+<rect x="340.0" y="192" width="72.9" height="22" fill="#94a3b8" rx="2"/>
+<rect x="412.9" y="192" width="235.2" height="22" fill="#3572a5" rx="2"/>
+<text x="530.5" y="207.0" font-size="10.5" fill="#fff" text-anchor="middle">Sage A1.5</text>
+<rect x="648.1" y="192" width="23.2" height="22" fill="#2ea043" rx="2"/>
+<rect x="671.2" y="192" width="132.5" height="22" fill="#eef1f5" rx="2"/>
+<text x="809.8" y="207.0" font-size="12" fill="#111">free 8.0GB</text>
+<line x1="340" y1="72" x2="340" y2="214" stroke="#999"/>
+<line x1="406" y1="72" x2="406" y2="214" stroke="#eee"/>
+<line x1="472" y1="72" x2="472" y2="214" stroke="#eee"/>
+<line x1="539" y1="72" x2="539" y2="214" stroke="#eee"/>
+<line x1="605" y1="72" x2="605" y2="214" stroke="#eee"/>
+<line x1="671" y1="72" x2="671" y2="214" stroke="#eee"/>
+<line x1="738" y1="72" x2="738" y2="214" stroke="#eee"/>
+<line x1="804" y1="72" x2="804" y2="214" stroke="#eee"/>
+<line x1="870" y1="72" x2="870" y2="214" stroke="#eee"/>
+<text x="406" y="228" font-size="10.5" fill="#666" text-anchor="middle">4</text>
+<text x="472" y="228" font-size="10.5" fill="#666" text-anchor="middle">8</text>
+<text x="539" y="228" font-size="10.5" fill="#666" text-anchor="middle">12</text>
+<text x="605" y="228" font-size="10.5" fill="#666" text-anchor="middle">16</text>
+<text x="671" y="228" font-size="10.5" fill="#666" text-anchor="middle">20</text>
+<text x="738" y="228" font-size="10.5" fill="#666" text-anchor="middle">24</text>
+<text x="804" y="228" font-size="10.5" fill="#666" text-anchor="middle">28</text>
+<text x="870" y="228" font-size="10.5" fill="#666" text-anchor="middle">32</text>
+<text x="344" y="246" font-size="11" fill="#666">gigabytes of memory</text>
+<rect x="16" y="280" width="11" height="11" fill="#94a3b8" rx="2"/>
+<text x="32" y="289" font-size="11" fill="#333">system + extras</text>
+<rect x="178" y="280" width="11" height="11" fill="#3572a5" rx="2"/>
+<text x="194" y="289" font-size="11" fill="#333">model file (GGUF)</text>
+<rect x="356" y="280" width="11" height="11" fill="#2ea043" rx="2"/>
+<text x="372" y="289" font-size="11" fill="#333">context cache</text>
+<rect x="502" y="280" width="11" height="11" fill="#eef1f5" rx="2"/>
+<text x="518" y="289" font-size="11" fill="#333">free</text>
+</svg>

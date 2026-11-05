@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="372" viewBox="0 0 1000 372" font-family="DejaVu Sans, sans-serif">
+<rect width="1000" height="372" fill="#ffffff"/>
+<text x="16" y="30" font-size="19" font-weight="bold" fill="#111">Speculative decoding on the rig: before and after</text>
+<text x="16" y="52" font-size="12.5" fill="#444">Decode speed, dual-GPU rig, 2026-10-29 sessions. acc = acceptance rate. Sage A1.5: DFlash2 measured (61-108, median 76); before pending.</text>
+<line x1="379" y1="72" x2="379" y2="276" stroke="#eee"/>
+<line x1="457" y1="72" x2="457" y2="276" stroke="#eee"/>
+<line x1="536" y1="72" x2="536" y2="276" stroke="#eee"/>
+<line x1="614" y1="72" x2="614" y2="276" stroke="#eee"/>
+<line x1="693" y1="72" x2="693" y2="276" stroke="#eee"/>
+<line x1="772" y1="72" x2="772" y2="276" stroke="#eee"/>
+<line x1="850" y1="72" x2="850" y2="276" stroke="#eee"/>
+<text x="292" y="96.0" font-size="12.5" fill="#222" text-anchor="end">Flint 15.9GB</text>
+<text x="292" y="111.0" font-size="10.5" fill="#666" text-anchor="end">before: plain decode; acc .24-.77</text>
+<rect x="300" y="78" width="208.3" height="12" fill="#6b7280" rx="2"/>
+<text x="514.3" y="88.0" font-size="11.5" fill="#111">53</text>
+<rect x="300" y="93" width="287.0" height="12" fill="#2ea043" rx="2"/>
+<rect x="300" y="93" width="558.2" height="12" fill="#2ea043" fill-opacity="0.45" rx="2"/>
+<text x="864.2" y="103.0" font-size="11.5" fill="#111">73-142</text>
+<text x="292" y="138.0" font-size="12.5" fill="#222" text-anchor="end">Tiel-Coder-35B</text>
+<text x="292" y="153.0" font-size="10.5" fill="#666" text-anchor="end">before: MTP; acc .19-.24</text>
+<rect x="300" y="120" width="173.0" height="12" fill="#6b7280" rx="2"/>
+<text x="479.0" y="130.0" font-size="11.5" fill="#111">44</text>
+<rect x="300" y="135" width="263.4" height="12" fill="#2ea043" rx="2"/>
+<rect x="300" y="135" width="294.8" height="12" fill="#2ea043" fill-opacity="0.45" rx="2"/>
+<text x="600.8" y="145.0" font-size="11.5" fill="#111">67-75</text>
+<text x="292" y="180.0" font-size="12.5" fill="#222" text-anchor="end">Ornith-1.5-35B</text>
+<text x="292" y="195.0" font-size="10.5" fill="#666" text-anchor="end">before: MTP, at 86k ctx; acc .23-.29</text>
+<rect x="300" y="162" width="159.2" height="12" fill="#6b7280" rx="2"/>
+<text x="465.2" y="172.0" font-size="11.5" fill="#111">40.5</text>
+<rect x="300" y="177" width="235.9" height="12" fill="#2ea043" rx="2"/>
+<rect x="300" y="177" width="271.2" height="12" fill="#2ea043" fill-opacity="0.45" rx="2"/>
+<text x="577.2" y="187.0" font-size="11.5" fill="#111">60-69</text>
+<text x="292" y="222.0" font-size="12.5" fill="#222" text-anchor="end">Qwen3.8-27B, long sessions</text>
+<text x="292" y="237.0" font-size="10.5" fill="#666" text-anchor="end">before: MTP; acc .2-.3 to .33</text>
+<rect x="300" y="204" width="73.5" height="12" fill="#6b7280" rx="2"/>
+<text x="379.5" y="214.0" font-size="11.5" fill="#111">18.7</text>
+<rect x="300" y="219" width="96.3" height="12" fill="#2ea043" rx="2"/>
+<rect x="300" y="219" width="116.0" height="12" fill="#2ea043" fill-opacity="0.45" rx="2"/>
+<text x="422.0" y="229.0" font-size="11.5" fill="#111">24.5-29.5</text>
+<text x="292" y="264.0" font-size="12.5" fill="#222" text-anchor="end">Qwen3.8-27B, short chat</text>
+<text x="292" y="279.0" font-size="10.5" fill="#666" text-anchor="end">same model; acc .2-.3 to .33</text>
+<rect x="300" y="246" width="73.5" height="12" fill="#6b7280" rx="2"/>
+<text x="379.5" y="256.0" font-size="11.5" fill="#111">18.7</text>
+<rect x="300" y="261" width="157.2" height="12" fill="#2ea043" rx="2"/>
+<rect x="300" y="261" width="267.3" height="12" fill="#2ea043" fill-opacity="0.45" rx="2"/>
+<text x="573.3" y="271.0" font-size="11.5" fill="#111">40-68</text>
+<line x1="300" y1="72" x2="300" y2="276" stroke="#999"/>
+<text x="379" y="290" font-size="10.5" fill="#666" text-anchor="middle">20</text>
+<text x="457" y="290" font-size="10.5" fill="#666" text-anchor="middle">40</text>
+<text x="536" y="290" font-size="10.5" fill="#666" text-anchor="middle">60</text>
+<text x="614" y="290" font-size="10.5" fill="#666" text-anchor="middle">80</text>
+<text x="693" y="290" font-size="10.5" fill="#666" text-anchor="middle">100</text>
+<text x="772" y="290" font-size="10.5" fill="#666" text-anchor="middle">120</text>
+<text x="850" y="290" font-size="10.5" fill="#666" text-anchor="middle">140</text>
+<text x="304" y="308" font-size="11" fill="#666">decode tok/s (tokens per second)</text>
+<rect x="16" y="338" width="11" height="11" fill="#6b7280" rx="2"/>
+<text x="32" y="347" font-size="11" fill="#333">before (plain or MTP)</text>
+<rect x="226" y="338" width="11" height="11" fill="#2ea043" rx="2"/>
+<text x="242" y="347" font-size="11" fill="#333">with DFlash2</text>
+</svg>

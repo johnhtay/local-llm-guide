@@ -19,6 +19,14 @@ RAM is memory, not disk space. Check yours:
 | 32GB | ~25GB file (that means the 27B-35B models) |
 | 64GB+ | almost anything |
 
+![What fits in the memory budget](../charts/memory-budget-simple.png)
+
+*The table above, drawn: what the system keeps for itself (grey), what the
+model file takes, what context adds, and what is left over. The last row is the
+author's actual rig, two GPUs working together. Treat every number as a round
+figure; the boot test is what really decides. The advanced guide's version of
+this chart has more machine rows and a finer breakdown.*
+
 Disk space matters too: the file sits on disk (need its size plus a bit of slack),
 but it must *fit in RAM* while running.
 
@@ -39,3 +47,7 @@ ever hit "out of memory", lowering context is the first fix.
 
 Keep the model file on your main disk, not on a USB stick: the program reads from it
 constantly.
+
+---
+
+*Unfamiliar words? One-line explanations in the [glossary](glossary.md).*

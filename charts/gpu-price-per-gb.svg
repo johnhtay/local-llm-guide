@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="717" viewBox="0 0 1000 717" font-family="DejaVu Sans, sans-serif">
+<rect width="1000" height="717" fill="#ffffff"/>
+<text x="16" y="30" font-size="19" font-weight="bold" fill="#111">Price per gigabyte of memory, November 2026 (France)</text>
+<text x="16" y="52" font-size="12.5" fill="#444">Launch MSRP vs street price, French retailers, 2026-11-05; grey = unified-memory machines (Spark counts only its GPU-reachable share).</text>
+<line x1="344" y1="72" x2="344" y2="621" stroke="#eee"/>
+<line x1="388" y1="72" x2="388" y2="621" stroke="#eee"/>
+<line x1="432" y1="72" x2="432" y2="621" stroke="#eee"/>
+<line x1="475" y1="72" x2="475" y2="621" stroke="#eee"/>
+<line x1="519" y1="72" x2="519" y2="621" stroke="#eee"/>
+<line x1="563" y1="72" x2="563" y2="621" stroke="#eee"/>
+<line x1="607" y1="72" x2="607" y2="621" stroke="#eee"/>
+<line x1="651" y1="72" x2="651" y2="621" stroke="#eee"/>
+<line x1="695" y1="72" x2="695" y2="621" stroke="#eee"/>
+<line x1="738" y1="72" x2="738" y2="621" stroke="#eee"/>
+<line x1="782" y1="72" x2="782" y2="621" stroke="#eee"/>
+<line x1="826" y1="72" x2="826" y2="621" stroke="#eee"/>
+<line x1="870" y1="72" x2="870" y2="621" stroke="#eee"/>
+<text x="292" y="88.5" font-size="12.5" fill="#222" text-anchor="end">Strix Halo mini-PC, 128GB</text>
+<text x="292" y="103.5" font-size="10.5" fill="#666" text-anchor="end">64GB tier ≈€2,300</text>
+<rect x="300" y="78" width="65.1" height="12" fill="#b0b7c0" rx="2"/>
+<text x="371.1" y="88.0" font-size="11.5" fill="#111">€30/GB (128GB ≈€3,800)</text>
+<text x="292" y="123.0" font-size="12.5" fill="#222" text-anchor="end">Intel Arc B580, 12GB</text>
+<text x="292" y="138.0" font-size="10.5" fill="#666" text-anchor="end">MSRP ≈€249</text>
+<rect x="300" y="105" width="45.6" height="12" fill="#9e9e9e" rx="2"/>
+<text x="351.6" y="115.0" font-size="11.5" fill="#111">€20.8</text>
+<rect x="300" y="120" width="78.5" height="12" fill="#2ea043" rx="2"/>
+<text x="384.5" y="130.0" font-size="11.5" fill="#111">€36</text>
+<text x="292" y="165.0" font-size="12.5" fill="#222" text-anchor="end">Intel Arc Pro B50, 16GB</text>
+<text x="292" y="180.0" font-size="10.5" fill="#666" text-anchor="end">MSRP ≈€349</text>
+<rect x="300" y="147" width="47.8" height="12" fill="#9e9e9e" rx="2"/>
+<text x="353.8" y="157.0" font-size="11.5" fill="#111">€21.8</text>
+<rect x="300" y="162" width="89.7" height="12" fill="#2ea043" rx="2"/>
+<text x="395.7" y="172.0" font-size="11.5" fill="#111">€41</text>
+<text x="292" y="207.0" font-size="12.5" fill="#222" text-anchor="end">Intel Arc Pro B60, 24GB</text>
+<text x="292" y="222.0" font-size="10.5" fill="#666" text-anchor="end">MSRP ≈€499</text>
+<rect x="300" y="189" width="45.6" height="12" fill="#9e9e9e" rx="2"/>
+<text x="351.6" y="199.0" font-size="11.5" fill="#111">€20.8</text>
+<rect x="300" y="204" width="92.1" height="12" fill="#2ea043" rx="2"/>
+<text x="398.1" y="214.0" font-size="11.5" fill="#111">€42</text>
+<text x="292" y="241.5" font-size="12.5" fill="#222" text-anchor="end">Apple Silicon Mac, 16GB unified</text>
+<text x="292" y="256.5" font-size="10.5" fill="#666" text-anchor="end">rung 2; quiet, zero install</text>
+<rect x="300" y="231" width="96.0" height="12" fill="#b0b7c0" rx="2"/>
+<text x="402.0" y="241.0" font-size="11.5" fill="#111">€44/GB (16GB ≈€700)</text>
+<text x="292" y="276.0" font-size="12.5" fill="#222" text-anchor="end">Intel Arc Pro B65, 32GB</text>
+<text x="292" y="291.0" font-size="10.5" fill="#666" text-anchor="end">listed ≈€909 (US); capacity-first</text>
+<rect x="300" y="258" width="62.3" height="12" fill="#9e9e9e" rx="2"/>
+<text x="368.3" y="268.0" font-size="11.5" fill="#111">€28.4</text>
+<rect x="300" y="273" width="115.1" height="12" fill="#2ea043" rx="2"/>
+<text x="421.1" y="283.0" font-size="11.5" fill="#111">€53</text>
+<text x="292" y="318.0" font-size="12.5" fill="#222" text-anchor="end">RTX 5060 Ti, 16GB</text>
+<text x="292" y="333.0" font-size="10.5" fill="#666" text-anchor="end">MSRP ≈€429</text>
+<rect x="300" y="300" width="58.8" height="12" fill="#9e9e9e" rx="2"/>
+<text x="364.8" y="310.0" font-size="11.5" fill="#111">€26.8</text>
+<rect x="300" y="315" width="119.9" height="12" fill="#3572a5" rx="2"/>
+<text x="425.9" y="325.0" font-size="11.5" fill="#111">€55</text>
+<text x="292" y="352.5" font-size="12.5" fill="#222" text-anchor="end">AORUS AI BOX (5060 Ti), 16GB</text>
+<text x="292" y="367.5" font-size="10.5" fill="#666" text-anchor="end">€1,000-1,130; box premium</text>
+<rect x="300" y="342" width="137.0" height="12" fill="#2ea043" rx="2"/>
+<text x="443.0" y="352.0" font-size="11.5" fill="#111">€63/GB</text>
+<text x="292" y="387.0" font-size="12.5" fill="#222" text-anchor="end">Intel Arc Pro B70, 32GB</text>
+<text x="292" y="402.0" font-size="10.5" fill="#666" text-anchor="end">MSRP ≈€949; often out of stock</text>
+<rect x="300" y="369" width="65.1" height="12" fill="#9e9e9e" rx="2"/>
+<text x="371.1" y="379.0" font-size="11.5" fill="#111">€29.7</text>
+<rect x="300" y="384" width="140.5" height="12" fill="#2ea043" rx="2"/>
+<text x="446.5" y="394.0" font-size="11.5" fill="#111">€64</text>
+<text x="292" y="429.0" font-size="12.5" fill="#222" text-anchor="end">AMD RX 9070 XT, 16GB</text>
+<text x="292" y="444.0" font-size="10.5" fill="#666" text-anchor="end">MSRP ≈€599</text>
+<rect x="300" y="411" width="82.0" height="12" fill="#9e9e9e" rx="2"/>
+<text x="388.0" y="421.0" font-size="11.5" fill="#111">€37.4</text>
+<rect x="300" y="426" width="143.2" height="12" fill="#3572a5" rx="2"/>
+<text x="449.2" y="436.0" font-size="11.5" fill="#111">€65</text>
+<text x="292" y="471.0" font-size="12.5" fill="#222" text-anchor="end">AMD Radeon AI PRO R9700, 32GB</text>
+<text x="292" y="486.0" font-size="10.5" fill="#666" text-anchor="end">MSRP ≈€1,299</text>
+<rect x="300" y="453" width="89.0" height="12" fill="#9e9e9e" rx="2"/>
+<text x="395.0" y="463.0" font-size="11.5" fill="#111">€40.6</text>
+<rect x="300" y="468" width="148.4" height="12" fill="#2ea043" rx="2"/>
+<text x="454.4" y="478.0" font-size="11.5" fill="#111">€68</text>
+<text x="292" y="513.0" font-size="12.5" fill="#222" text-anchor="end">RTX 5070 Ti, 16GB</text>
+<text x="292" y="528.0" font-size="10.5" fill="#666" text-anchor="end">MSRP ≈€749</text>
+<rect x="300" y="495" width="102.6" height="12" fill="#9e9e9e" rx="2"/>
+<text x="408.6" y="505.0" font-size="11.5" fill="#111">€46.8</text>
+<rect x="300" y="510" width="180.6" height="12" fill="#3572a5" rx="2"/>
+<text x="486.6" y="520.0" font-size="11.5" fill="#111">€82</text>
+<text x="292" y="547.5" font-size="12.5" fill="#222" text-anchor="end">RTX A6000, 48GB</text>
+<text x="292" y="562.5" font-size="10.5" fill="#666" text-anchor="end">new ≈€5,250; refurbisher only</text>
+<rect x="300" y="537" width="201.0" height="12" fill="#3572a5" rx="2"/>
+<text x="507.0" y="547.0" font-size="11.5" fill="#111">€92</text>
+<text x="292" y="574.5" font-size="12.5" fill="#222" text-anchor="end">Dell XPS 16 Creator (RTX Spark), 128GB</text>
+<text x="292" y="589.5" font-size="10.5" fill="#666" text-anchor="end">128GB config; ~half the pool GPU-reachable</text>
+<rect x="300" y="564" width="252.6" height="12" fill="#b0b7c0" rx="2"/>
+<text x="558.6" y="574.0" font-size="11.5" fill="#111">€115/GB of GPU budget (cfg ≈€7,370)</text>
+<text x="292" y="609.0" font-size="12.5" fill="#222" text-anchor="end">RTX 5090, 32GB</text>
+<text x="292" y="624.0" font-size="10.5" fill="#666" text-anchor="end">excluded by rule 3</text>
+<rect x="300" y="591" width="137.0" height="12" fill="#9e9e9e" rx="2"/>
+<text x="443.0" y="601.0" font-size="11.5" fill="#111">€62.5</text>
+<rect x="300" y="606" width="544.6" height="12" fill="#d9534f" rx="2"/>
+<text x="850.6" y="616.0" font-size="11.5" fill="#111">€248+</text>
+<line x1="300" y1="72" x2="300" y2="621" stroke="#999"/>
+<text x="344" y="635" font-size="10.5" fill="#666" text-anchor="middle">20</text>
+<text x="388" y="635" font-size="10.5" fill="#666" text-anchor="middle">40</text>
+<text x="432" y="635" font-size="10.5" fill="#666" text-anchor="middle">60</text>
+<text x="475" y="635" font-size="10.5" fill="#666" text-anchor="middle">80</text>
+<text x="519" y="635" font-size="10.5" fill="#666" text-anchor="middle">100</text>
+<text x="563" y="635" font-size="10.5" fill="#666" text-anchor="middle">120</text>
+<text x="607" y="635" font-size="10.5" fill="#666" text-anchor="middle">140</text>
+<text x="651" y="635" font-size="10.5" fill="#666" text-anchor="middle">160</text>
+<text x="695" y="635" font-size="10.5" fill="#666" text-anchor="middle">180</text>
+<text x="738" y="635" font-size="10.5" fill="#666" text-anchor="middle">200</text>
+<text x="782" y="635" font-size="10.5" fill="#666" text-anchor="middle">220</text>
+<text x="826" y="635" font-size="10.5" fill="#666" text-anchor="middle">240</text>
+<text x="870" y="635" font-size="10.5" fill="#666" text-anchor="middle">260</text>
+<text x="304" y="653" font-size="11" fill="#666">euros per gigabyte of memory (lower is better)</text>
+<rect x="16" y="683" width="11" height="11" fill="#9e9e9e" rx="2"/>
+<text x="32" y="692" font-size="11" fill="#333">launch MSRP</text>
+<rect x="146" y="683" width="11" height="11" fill="#2ea043" rx="2"/>
+<text x="162" y="692" font-size="11" fill="#333">street: value tier</text>
+<rect x="332" y="683" width="11" height="11" fill="#3572a5" rx="2"/>
+<text x="348" y="692" font-size="11" fill="#333">street: the rest</text>
+<rect x="502" y="683" width="11" height="11" fill="#d9534f" rx="2"/>
+<text x="518" y="692" font-size="11" fill="#333">street: 5090 (excluded)</text>
+<rect x="728" y="683" width="11" height="11" fill="#b0b7c0" rx="2"/>
+<text x="744" y="692" font-size="11" fill="#333">unified memory (no VRAM)</text>
+</svg>

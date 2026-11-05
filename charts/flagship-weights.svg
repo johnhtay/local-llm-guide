@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="506" viewBox="0 0 1000 506" font-family="DejaVu Sans, sans-serif">
+<rect width="1000" height="506" fill="#ffffff"/>
+<text x="16" y="30" font-size="19" font-weight="bold" fill="#111">Why nobody runs the frontier at home</text>
+<text x="16" y="52" font-size="12.5" fill="#444">Weights as published on HuggingFace, 2026-11-05: Q4-class Unsloth quants (UD-Q4_K_XL), Kimi's official release. Bars to scale.</text>
+<line x1="367" y1="72" x2="367" y2="396" stroke="#eee"/>
+<line x1="434" y1="72" x2="434" y2="396" stroke="#eee"/>
+<line x1="501" y1="72" x2="501" y2="396" stroke="#eee"/>
+<line x1="568" y1="72" x2="568" y2="396" stroke="#eee"/>
+<line x1="635" y1="72" x2="635" y2="396" stroke="#eee"/>
+<line x1="702" y1="72" x2="702" y2="396" stroke="#eee"/>
+<line x1="769" y1="72" x2="769" y2="396" stroke="#eee"/>
+<line x1="836" y1="72" x2="836" y2="396" stroke="#eee"/>
+<text x="292" y="89.5" font-size="12.5" fill="#222" text-anchor="end">Kimi K3.1 Pro, 2.8T</text>
+<text x="292" y="104.5" font-size="10.5" fill="#666" text-anchor="end">official MXFP4 release; no GGUF yet</text>
+<rect x="300" y="78" width="523.4" height="14" fill="#d9534f" rx="2"/>
+<text x="829.4" y="89.0" font-size="11.5" fill="#111">1,561GB (56x the rig)</text>
+<text x="292" y="132.5" font-size="12.5" fill="#222" text-anchor="end">Mistral Large 4, ~1T</text>
+<text x="292" y="147.5" font-size="10.5" fill="#666" text-anchor="end">unsloth UD-Q4_K_XL</text>
+<rect x="300" y="121" width="202.9" height="14" fill="#d9534f" rx="2"/>
+<text x="508.9" y="132.0" font-size="11.5" fill="#111">605GB (22x the rig)</text>
+<text x="292" y="175.5" font-size="12.5" fill="#222" text-anchor="end">DeepSeek V4.1 Flash 1017, 763B</text>
+<text x="292" y="190.5" font-size="10.5" fill="#666" text-anchor="end">unsloth UD-Q4_K_XL</text>
+<rect x="300" y="164" width="168.0" height="14" fill="#d9534f" rx="2"/>
+<text x="474.0" y="175.0" font-size="11.5" fill="#111">501GB (18x the rig)</text>
+<text x="292" y="218.5" font-size="12.5" fill="#222" text-anchor="end">GLM-5.3, 753B</text>
+<text x="292" y="233.5" font-size="10.5" fill="#666" text-anchor="end">unsloth UD-Q4_K_XL</text>
+<rect x="300" y="207" width="156.6" height="14" fill="#d9534f" rx="2"/>
+<text x="462.6" y="218.0" font-size="11.5" fill="#111">467GB (17x the rig)</text>
+<text x="292" y="261.5" font-size="12.5" fill="#222" text-anchor="end">GLM-5.3-Flash, 321B</text>
+<text x="292" y="276.5" font-size="10.5" fill="#666" text-anchor="end">unsloth UD-Q4_K_XL</text>
+<rect x="300" y="250" width="67.1" height="14" fill="#d9534f" rx="2"/>
+<text x="373.1" y="261.0" font-size="11.5" fill="#111">200GB (7x the rig)</text>
+<text x="292" y="304.5" font-size="12.5" fill="#222" text-anchor="end">One refurb 48GB card</text>
+<text x="292" y="319.5" font-size="10.5" fill="#666" text-anchor="end">RTX A6000 (chapter 12)</text>
+<rect x="300" y="293" width="16.1" height="14" fill="#9e9e9e" rx="2"/>
+<text x="322.1" y="304.0" font-size="11.5" fill="#111">48GB</text>
+<text x="292" y="347.5" font-size="12.5" fill="#222" text-anchor="end">This guide's rig, 28GB</text>
+<text x="292" y="362.5" font-size="10.5" fill="#666" text-anchor="end">12GB + 16GB eGPU</text>
+<rect x="300" y="336" width="9.4" height="14" fill="#2ea043" rx="2"/>
+<text x="315.4" y="347.0" font-size="11.5" fill="#111">28GB</text>
+<text x="292" y="390.5" font-size="12.5" fill="#222" text-anchor="end">One 16GB GPU</text>
+<text x="292" y="405.5" font-size="10.5" fill="#666" text-anchor="end">the Tier A card</text>
+<rect x="300" y="379" width="5.4" height="14" fill="#9e9e9e" rx="2"/>
+<text x="311.4" y="390.0" font-size="11.5" fill="#111">16GB</text>
+<line x1="300" y1="72" x2="300" y2="396" stroke="#999"/>
+<text x="367" y="410" font-size="10.5" fill="#666" text-anchor="middle">200</text>
+<text x="434" y="410" font-size="10.5" fill="#666" text-anchor="middle">400</text>
+<text x="501" y="410" font-size="10.5" fill="#666" text-anchor="middle">600</text>
+<text x="568" y="410" font-size="10.5" fill="#666" text-anchor="middle">800</text>
+<text x="635" y="410" font-size="10.5" fill="#666" text-anchor="middle">1000</text>
+<text x="702" y="410" font-size="10.5" fill="#666" text-anchor="middle">1200</text>
+<text x="769" y="410" font-size="10.5" fill="#666" text-anchor="middle">1400</text>
+<text x="836" y="410" font-size="10.5" fill="#666" text-anchor="middle">1600</text>
+<text x="304" y="428" font-size="11" fill="#666">gigabytes of weights on disk</text>
+<rect x="16" y="472" width="11" height="11" fill="#d9534f" rx="2"/>
+<text x="32" y="481" font-size="11" fill="#333">flagship model weights</text>
+<rect x="234" y="472" width="11" height="11" fill="#9e9e9e" rx="2"/>
+<text x="250" y="481" font-size="11" fill="#333">a single big card</text>
+<rect x="412" y="472" width="11" height="11" fill="#2ea043" rx="2"/>
+<text x="428" y="481" font-size="11" fill="#333">this guide's rig (28GB)</text>
+</svg>

@@ -25,3 +25,7 @@ first setup.
 
 The full ranked fleet with measured speeds and honest caveats lives in the advanced
 guide ([../05-fleet-2026-11.md](../05-fleet-2026-11.md)).
+
+---
+
+*Unfamiliar words? One-line explanations in the [glossary](glossary.md).*
