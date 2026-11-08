@@ -43,6 +43,7 @@ Beginners get the same list in plainer words: [beginner/glossary.md](beginner/gl
 | tok/s | Tokens per second of output (decode speed) |
 | Token-weighted mean | Sum of tokens divided by sum of generation time: one number for a whole tier, big sessions count more |
 | Tool-corrected tok/s | Tokens divided by generation time minus tool time: an upper bound on decode speed, since prefill stays in |
+| pp512 / tg32 / tg128 | llama-bench metrics: prompt processing at batch 512; token generation at batch 32 or 128; the larger batch reads higher |
 | Gen tok | Generated tokens in a session: output plus reasoning; the served chapter 09 table shows it next to its split (Reason tok, Out tok), the local table shows the total only |
 | Reason tok | Reasoning (thinking) tokens as the provider's usage ledger reports them; a zero means the ledger did not split them, not that the model did not think |
 | Out tok | The ledger's output tokens: final prose plus tool-call syntax; for llama-server sessions this also holds the thinking, which the ledger does not split out |
@@ -86,12 +87,17 @@ Beginners get the same list in plainer words: [beginner/glossary.md](beginner/gl
 | JSONC | JSON with comments allowed; OpenCode's config file format |
 | API | The way programs talk to each other over a network; an "OpenAI-compatible API" is one speaking that shape |
 | eGPU | External GPU in an enclosure (here: USB4 dock) |
+| AI BOX | Gigabyte's AORUS finished eGPU enclosure line; the lab's unit is the RTX 5060 Ti AI BOX, 850 W PSU, TB5/USB4 |
 | TB4 | Thunderbolt 4: the older name for the same class of cable standard as USB4 |
 | TB5 | Thunderbolt 5: the newer, faster version of the same cable standard |
-| Battlemage | Intel's current GPU architecture (Xe2); consumer Arc B580/B570, workstation Arc Pro B50 (16GB), B60 (24GB), B70 (32GB) |
+| OCuLink | PCIe-over-a-cable connector on some eGPU docks; no hot-swap, and a Thunderbolt-only host falls back to the dock's USB4 port |
+| Battlemage | Intel's current GPU architecture (Xe2); consumer Arc B580/B570, workstation Arc Pro B50 (16GB), B60 (24GB), B65 (32GB), B70 (32GB) |
 | RDNA4 | AMD's current GPU architecture; RX 9070 series (16GB) and Radeon AI PRO R9700 (32GB workstation card) |
 | ROCm | AMD's GPU compute stack, the AMD equivalent of CUDA |
 | SYCL | The open GPU compute stack llama.cpp uses on Intel Arc |
+| OpenVINO / OVMS | Intel's inference runtime and its model server; sometimes faster than llama.cpp's SYCL on Arc |
+| Mesa-ANV | The open-source Linux Vulkan driver for Intel GPUs; can lag the Windows driver badly (the source of a 3.3 t/s outlier in the hardware doc) |
+| GRIMOIRE | A third-party native C++/SYCL inference engine for Arc (MXFP4 weights); not llama.cpp, so its numbers are not comparable to llama.cpp rows |
 | SR-IOV | One physical GPU partitioned into several virtual GPUs for containers or VMs |
 | SFF | Small form factor: low-profile, low-power card format |
 | Refurbisher | A business that buys decommissioned fleet hardware in bulk, tests and refurbishes it, and resells with warranty |
@@ -152,6 +158,15 @@ Beginners get the same list in plainer words: [beginner/glossary.md](beginner/gl
 | FrontierCode 2.0 | Cognition's private coding benchmark in AA's index; graded on whether a repo maintainer would merge the change |
 | Terminal-Bench-Science | 70 agentic scientific research tasks run in a terminal (new in AA index v5) |
 | AutomationBench-AA | AA's agentic workflow-automation benchmark (added in v4.3) |
+| Claw-Eval | Autonomous-agent benchmark with tool-use and user-agent splits (used by Occamy's paper); "pass3" = all three independent runs must pass |
+| WildClawBench | Harder autonomous-agent benchmark from the same family; real-world tool workflows |
+| tau3-Bench | Multi-turn tool-use benchmark (banking scenario in the Occamy table) |
+| GDPval | OpenAI's real-world economically valuable task suite; the Occamy number is the paper's own reproduction, not the official leaderboard |
+| FrontierScience | Olympiad-level (FS-Olympiad) vs PhD-level research (FS-Research) subtasks in physics, chemistry and biology, used by the Axion and Sage papers |
+| Co-work | Office, commerce and automation agent work; the mission Occamy's paper trains for, as opposed to scientific reasoning |
+| Best-of-runs | Reporting the best score of several independent runs; the most generous benchmark protocol, and the one Axion's paper uses |
+| Presence penalty | Sampling setting that discourages repeating tokens already generated; the counter-measure applied to Axion's loops |
+| dwm-edge | State where the desktop window manager (dwm) and the model's VRAM use together saturate a GPU's memory (96%/96% observed); the suspect behind the 11-06 crash |
 | AA-Briefcase, AA-Omniscience, GDP.pdf, CritPt | The other evaluations in AA index v5.0.1: business analysis, knowledge breadth, a long economic report, research-level physics |
 | API-only model | A model served through an API whose weights are not released (AA marks these on its leaderboard) |
 | Agentic | A setup where the model drives tools, files or a terminal itself, instead of only answering a prompt |

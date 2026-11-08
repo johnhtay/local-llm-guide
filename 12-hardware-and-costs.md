@@ -64,7 +64,7 @@ buy; the market has moved every month since mid-2025):
 | 3 | [Intel Arc B580](https://www.intel.com/content/www/us/en/products/sku/241598/intel-arc-b580-graphics/specifications.html), 12GB | ~€430 (idealo; often out of stock; MSRP ≈€249) | 9B-class fast; 190W |
 | 4 | 16GB: [Intel Arc Pro B50](https://www.intel.com/content/www/us/en/products/sku/242615/intel-arc-pro-b50-graphics/specifications.html) (70W SFF), [RTX 5060 Ti 16GB](https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/), [AMD RX 9070 XT](https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9070xt.html) | B50 €655-850; 5060 Ti €820-930; 9070 XT €930-1,160 | the whole Tier A fleet, full offload + MTP |
 | 5 | eGPU box: [AORUS RTX 5060 Ti AI BOX](https://www.gigabyte.com/us/Graphics-Card/GV-N506TIXEB-16GD) (Thunderbolt 5 / USB4) | €1,000-1,130 ([Darty/Fnac from €1,000](https://ledenicheur.fr/product.php?p=16030087), [LDLC €1,129.95](https://www.ldlc.com/fiche/PB00723305.html)) | Tier A on any TB5/USB4 laptop, moves between hosts |
-| 6 | 24GB: [Intel Arc Pro B60](https://www.intel.com/content/www/us/en/products/details/discrete-gpus/arc/workstations/b-series.html) | ~€1,010-1,375 (MSRP ≈€499) | 24GB-class models, longer context; four cards = 96GB |
+| 6 | 24GB: [Intel Arc Pro B60](https://www.intel.com/content/www/us/en/products/details/discrete-gpus/arc/workstations/b-series.html) | €829-1,046 (idealo.de lists German offers from ~€680, checked 2026-11-06; MSRP ≈€499) | 24GB-class models, longer context; four cards = 96GB |
 | 7 | 32GB: [Intel Arc Pro B65](https://www.asrock.com/Graphics-Card/Intel/Intel%20Arc%20Pro%20B65%20Creator%2032GB/index.asp) (capacity-first), [Intel Arc Pro B70](https://www.intel.com/content/www/us/en/products/details/discrete-gpus/arc/workstations/b-series.html), [AMD Radeon AI PRO R9700](https://www.amd.com/en/products/graphics/workstations/radeon-ai-pro/ai-9000-series/amd-radeon-ai-pro-r9700.html) | B65 €1,680-1,800; B70 ~€2,050 (frequently out of stock); R9700 ~€2,165 when findable | 70B-class single-card tier; the B65 is the cheapest 32GB in stock, the B70/R9700 the compute picks |
 | 7b | Unified memory, no VRAM: [Ryzen AI Max "Strix Halo" mini-PC](https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html) 128GB, or [RTX Spark (N1X) laptop/mini-PC](https://www.dell.com/en-us/blog/dell-xps-16-creator-edition-where-nvidia-rtx-spark-meets-premium-design) | Strix Halo 128GB ≈€2,300-3,900; [XPS 16 Creator €4,419-7,370](https://www.notebookcheck.com/Neues-Dell-XPS-16-mit-128GB-RAM-und-hellem-OLED-Display-startet-in-Deutschland.1431600.0.html) | Tier A at large context on one memory pool; trade-offs in the unified-memory section below |
 | 8 | 48GB: [RTX A6000](https://www.nvidia.com/en-us/design-visualization/rtx-a6000/) from a datacentre refurbisher | €4,400-5,500 refurbished (new ≈€5,250) | 70B at high quant, 40-series A3B with big context; the only sane path to 48GB |
@@ -95,7 +95,7 @@ Details that matter when choosing between rungs:
   [03](03-llamacpp-server.md) with the CUDA-specific flags dropped. Four B60s
   (96GB) is a measured, working serving config.
 - **The B65 is the capacity pick at 32GB.** It carries the same 32GB as the B70
-  but on a 192-bit bus (~456GB/s, the B580's memory subsystem) with roughly 20
+  on a 256-bit bus (~608GB/s) with roughly 20
   of the B70's 32 Xe2 cores ([ASRock specs](https://www.asrock.com/Graphics-Card/Intel/Intel%20Arc%20Pro%20B65%20Creator%2032GB/index.asp), [Igor's Lab on the positioning](https://www.igorslab.de/en/intel-arc-pro-b65-is-launching-on-the-market-and-intel-is-deliberately-positioning-the-workstation-graphics-card-closer-to-the-gaming-segment/)).
   That is a capacity rung, not a speed rung: decode stays fine for the A3B MoE
   fleet (only ~3B parameters are active per token, so decode is
@@ -106,7 +106,8 @@ Details that matter when choosing between rungs:
   RDNA4 workstation card launched at MSRP ≈€1,299; French in-stock listings
   have ranged €1,900-5,800 since, with [LDLC](https://www.ldlc.com) carrying the
   ASRock Creator at €2,199.95 and idealo listing from €2,165 on 2026-11-05. At
-  the low end it is the best price-per-GB on the market; at the high end it is
+  the low end it is competitive on price-per-GB (the B65 is cheaper per GB; the
+  R9700 buys the 900GB/s bandwidth); at the high end it is
   scalping. llama.cpp runs
   RDNA4 through Vulkan, and [ROCm 7.2](https://github.com/ROCm/ROCm/releases) (AMD's compute stack, the AMD equivalent of CUDA) added official
   RDNA4 support for the heavier paths.
@@ -121,7 +122,8 @@ Details that matter when choosing between rungs:
   history: bandwidth is real but manageable (with `-sm layer`, only activations
   cross the cable: see [08](08-optimisations.md)), and if the eGPU also drives a
   display, decode slows measurably; keep the display on the internal GPU.
-- **24GB changed hands.** The Arc Pro B60 at €1,010-1,375 new (idealo) is now
+- **24GB changed hands.** The Arc Pro B60 at €829-1,046 new (idealo.de lists
+  German offers from ~€680, checked 2026-11-06) is now
   the sane entry
   at this tier: the used-3090 alternative (~€1,100 equivalent on marketplaces)
   violates the sourcing rule and only wins on memory bandwidth (~2x), which
@@ -284,27 +286,27 @@ rig cannot fit. Prices drift; verify before budgeting.)
 ### What the lab's own volume would have cost
 
 Five months of the lead tester's logged work sessions (June to November 2026,
-the same corpus as [09](09-runtimes.md) as of 2026-11-05; tokens as recorded,
+the same corpus as [09](09-runtimes.md) as of 2026-11-08; tokens as recorded,
 including the huge repeated-input share an agentic session generates, agentic =
 the model driving tools itself):
 
 | Volume | Input | Output |
 |---|---|---|
-| Served proxy ("medium" = GLM 5.3 Flash) | 1,306M | 12.4M |
+| Served proxy ("medium" = GLM 5.3 Flash) | 1,388M | 13.7M |
 | Ollama Cloud (big open models) | 947M | 4.2M |
-| Local rig | 16M | 1.9M |
+| Local rig | 17M | 2.1M |
 
 Priced at the per-token table above, what that usage would have cost on other
 channels:
 
 | Reroute the same usage through | Volume basis | Approx. cost |
 |---|---|---|
-| GPT-6 Astra | proxy | ~$13,677 |
-| Claude Fable 5.1 | proxy | ~$13,677 |
-| Claude Opus 5.5 | proxy | ~$5,471 |
-| Claude Sonnet 5.5 | proxy | ~$2,735 |
-| Gemini 3.8 Flash | proxy | ~$1,135 |
-| GLM-5.3 Flash (OpenRouter) | proxy | ~$202 |
+| GPT-6 Astra | proxy | ~$14,564 |
+| Claude Fable 5.1 | proxy | ~$14,564 |
+| Claude Opus 5.5 | proxy | ~$5,825 |
+| Claude Sonnet 5.5 | proxy | ~$2,913 |
+| Gemini 3.8 Flash | proxy | ~$1,208 |
+| GLM-5.3 Flash (OpenRouter) | proxy | ~$215 |
 | Ollama Cloud at Mistral Large 4 rates | cloud | ~$671 |
 
 Caveats that keep this honest:
@@ -320,8 +322,8 @@ Caveats that keep this honest:
 - **The served proxy and Ollama Cloud costs are prepaid or institution-level**
   and not visible to the lead tester; the reroute rows are the only apples-to-
   apples comparison available.
-- **The local share is small by volume, and that is the point**: the rig's 16M
-  input tokens are a rounding error next to the proxy's 1,306M, but they were
+- **The local share is small by volume, and that is the point**: the rig's 17M
+  input tokens are a rounding error next to the proxy's 1,388M, but they were
   free and private, and the local sessions were the longest and most agentic
   (marathons like the 8h49m BEAST2 debugging run in 09).
 

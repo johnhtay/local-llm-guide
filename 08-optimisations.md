@@ -31,6 +31,7 @@ Measured on the dual-GPU rig (decode tok/s, same hardware, same day):
 
 | Model | Before (plain / MTP) | With DFlash2 | Acceptance |
 |---|---|---|---|
+| Occamy-1.0 | not measured (plain decode never run) | 52-135 (median ~81, n=96 requests) | .49 / 4.4 (n=96), the fleet best |
 | Flint 15.9GB | 53 (plain) | 73-142 | .24-.77 |
 | Tiel-Coder-35B | 44 (MTP) | 67-75 | .19-.24 and .347 (n=28): same borrowed Ornith drafter, the spread is content |
 | Ornith-1.5-35B | 40.5 (MTP, at 86k ctx) | 60-69 | .23-.29 |
@@ -43,9 +44,12 @@ The same table, drawn:
 
 *Grey bars: decode speed before. Green bars: with DFlash2, the light segment is
 the measured range. The acceptance rate (the share of drafted tokens the big
-model keeps, which sets the speed-up) sits under each model name. Sage A1.5 is
-not drawn: its before figure (plain or MTP) was never measured, so there is no
-grey bar to compare against; its DFlash2 sessions measured 61-108 tok/s (median
+model keeps, which sets the speed-up) sits under each model name. Sage A1.5 and
+Occamy-1.0 are not drawn: their before figures (plain decode) were never
+measured, so there is no grey bar to compare against; Occamy's DFlash2 side
+measured 52-135 tok/s (median ~81) across 96 requests in the 2026-11-06
+session with acceptance .49 (4.4 tokens per step), the fleet's best reading.
+Sage's DFlash2 sessions measured 61-108 tok/s (median
 76) on the current 229k-context boot, and acceptance came in at .361 (3.52
 tokens per step) across 830 generations in the 2026-11-01 all-day session.*
 
@@ -61,7 +65,8 @@ Field notes that took weeks to learn:
 - **A drafter trained for a different model still works**, with degraded
   acceptance (.2-.3), which is still 50-70% faster than plain decode. A
   well-matched drafter beats a finetune-matched one; the base-model drafter
-  (Qwen3.6-35B-A3B) served Sage, its finetune, fine. Tiel has no drafter of
+  (Qwen3.6-35B-A3B) served its two finetunes best of all (.361 median on Sage,
+  .49 on Occamy). Tiel has no drafter of
   its own: it borrows Ornith's (a same-base sibling), and acceptance read
   .19-.24 on the first sessions and .347 across 28 later generations, a
   reminder that acceptance is content-dependent before it is drafter-dependent.
@@ -92,7 +97,9 @@ Field notes that took weeks to learn:
 
 ## Next on the bench: DSpark (a future project)
 
-The acceptance ceiling on this rig (.2-.36) is exactly what DSpark attacks.
+The acceptance rates on this rig mostly sit at .2-.49 (Occamy's .49 median on
+the shared base drafter is the fleet best), still short of the 6x lossless
+ceiling DFlash's paper reports; that gap is what DSpark attacks.
 [DSpark](https://arxiv.org/abs/2607.05147) (Cheng et al., July 2026, from the
 DeepSeek team) keeps the parallel drafter but adds a lightweight sequential
 module to it, so the drafter models dependencies inside each proposed block

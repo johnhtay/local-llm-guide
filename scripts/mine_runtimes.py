@@ -109,7 +109,7 @@ NON_WORK = re.compile(
     r"vulcan|ludwig|\bVUL\b|investment|econ-finance|BdF|household asset|vignette"
     r"|fiscal|market data|IPO\b|ROI\b|heic|aldimobile|LDLC"
     r"|windows 11|\bCV\b|subah|riaz|resume review|resume:"
-    r"|horse|weapon|enemy|shooter|shotgun|projectile|\bfps\b"
+    r"|horse|weapon|enemy|shooter|shotgun|projectile|\bfps\b|rocket\b"
     r"|godot|snake|modelgen|three\.js|game\b|milankovitch|creative|free will"
     r"|dog and cat|map settings|html implementation|level-up"
     r"|rendering and performance|pre-feature|mobile bugs", re.I)

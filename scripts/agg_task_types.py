@@ -44,13 +44,13 @@ CATS = [
      r"|compaction|jinja|provider|api\b|cuda|nvfp4|ollama|tui|config|prefill|cmake|build crash"
      r"|openshell|cybtest|audit|untitled|webfetch|hf\b|huggingface|usb4|launch script|vision"),
     ("This Tutorial & documentation",
-     r"tutorial|publishability|beginners guide|beginner|speed re-evaluation|voice and phrasing"),
+     r"tutorial|publishability|beginners guide|beginner|speed re-evaluation|voice and phrasing|metrics update"),
     ("Games & creative",
      r"game|three\.js|3d|horse|sprite|level-up|weapon|enemy|shotgun|projectile"
      r"|godot|snake|fps\b|creative|art\b|dendrogram|milankovitch|dog and cat|website planning"
      r"|webapp|animation|rendering|shooter|galloping|ui\b|chart|plot|pre-feature|flag check"
      r"|html implementation|dash key|ttk|health bar|obstacle|peeking|impact and explosion|rebalance"
-     r"|sentinel"),
+     r"|sentinel|rocket\b"),
     ("Personal & admin",
      r"vulcan|ludwig|investment|econ-finance|household|bdf|fiscal|market data|ipo\b|roi\b"
      r"|heic|aldimobile|ldlc|windows|cv\b|resume|subah|riaz|laptop|asus|tuf"
