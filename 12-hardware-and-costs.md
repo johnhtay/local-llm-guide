@@ -259,7 +259,7 @@ of the next million tokens":
 | Chat subscription ([ChatGPT Plus](https://openai.com/chatgpt/pricing), [Claude Pro](https://www.anthropic.com/pricing), [Gemini Pro](https://one.google.com/about/google-ai-plans/)) | flat ~$20/mo, chat quotas | yes, tight | to the vendor |
 | [Mistral Le Chat (Vibe) Pro](https://mistral.ai/pricing) | flat $14.99/mo | yes | to Mistral |
 
-### Per-token API prices, November 2026 (OpenRouter, USD per million tokens)
+### Per-token API prices, November 2026 (OpenRouter, USD per million tokens, checked 2026-11-10)
 
 | Model | Input | Output | Weights |
 |---|---|---|---|
@@ -273,41 +273,45 @@ of the next million tokens":
 | [Qwen3.8 Max (0902)](https://openrouter.ai/qwen/qwen3.8-max-0902) | $2.00 | $6.00 | API only |
 | [Mistral Large 4](https://openrouter.ai/mistralai/mistral-large-4-0) | $0.70 | $2.10 | [open](https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B) |
 | [MiMo-V2.6-Pro](https://openrouter.ai/xiaomi/mimo-v2.6-pro) | $0.43 | $0.87 | [open](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL) |
-| [DeepSeek V4.1 Flash 1017](https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017) | $0.15 | $0.60 | [open](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017) |
+| [DeepSeek V4.1 Flash 1017](https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017) | $0.006 | $0.50 | [open](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017) |
 | [GLM-5.3](https://openrouter.ai/z-ai/glm-5.3) | $0.07 | $1.40 | [open](https://huggingface.co/zai-org/GLM-5.3) |
-| [GLM-5.3-Flash](https://openrouter.ai/z-ai/glm-5.3-flash) | $0.15 | $0.50 | [open](https://huggingface.co/zai-org/GLM-5.3-Flash) |
+| [GLM-5.3-Flash](https://openrouter.ai/z-ai/glm-5.3-flash) | $0.04 | $0.08 | [open](https://huggingface.co/zai-org/GLM-5.3-Flash) |
 | [MiniMax-M3.1-Flash](https://openrouter.ai/minimax/minimax-m3.1-flash) | $0.07 | $0.30 | [open](https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash) |
 
 (OpenRouter also resells the open models' official endpoints at the same
 rates; it adds a payment-processing fee on credit purchases rather than a
 subscription, and is the simplest way to run one-off benchmarks of models the
-rig cannot fit. Prices drift; verify before budgeting.)
+rig cannot fit. Prices drift; verify before budgeting: GLM-5.3-Flash fell
+from $0.15/$0.50 to $0.04/$0.08 in the two days to 2026-11-10, and
+MiniMax-M3.1-Flash halves its rates between 15:00 and 01:00 UTC.)
 
 ### What the lab's own volume would have cost
 
 Five months of the lead tester's logged work sessions (June to November 2026,
-the same corpus as [09](09-runtimes.md) as of 2026-11-08; tokens as recorded,
-including the huge repeated-input share an agentic session generates, agentic =
+the same corpus as [09](09-runtimes.md) as of 2026-11-10; Input counts full
+prompt volume, cache reads included, because llama.cpp-style servers log the
+reused prefix separately from the tokens they actually process, agentic =
 the model driving tools itself):
 
 | Volume | Input | Output |
 |---|---|---|
-| Served proxy ("medium" = GLM 5.3 Flash) | 1,388M | 13.7M |
-| Ollama Cloud (big open models) | 947M | 4.2M |
-| Local rig | 17M | 2.1M |
+| Served proxy ("medium" = GLM 5.3 Flash) | 1,445M | 14.2M |
+| Ollama Cloud (big open models) | 997M | 4.2M |
+| Local rig | 261M | 2.4M |
 
 Priced at the per-token table above, what that usage would have cost on other
 channels:
 
 | Reroute the same usage through | Volume basis | Approx. cost |
 |---|---|---|
-| GPT-6 Astra | proxy | ~$14,564 |
-| Claude Fable 5.1 | proxy | ~$14,564 |
-| Claude Opus 5.5 | proxy | ~$5,825 |
-| Claude Sonnet 5.5 | proxy | ~$2,913 |
-| Gemini 3.8 Flash | proxy | ~$1,208 |
-| GLM-5.3 Flash (OpenRouter) | proxy | ~$215 |
-| Ollama Cloud at Mistral Large 4 rates | cloud | ~$671 |
+| GPT-6 Astra | proxy | ~$15,159 |
+| Claude Fable 5.1 | proxy | ~$15,159 |
+| Claude Opus 5.5 | proxy | ~$6,064 |
+| Claude Sonnet 5.5 | proxy | ~$3,032 |
+| Gemini 3.8 Flash | proxy | ~$1,258 |
+| GLM-5.3 Flash (OpenRouter) | proxy | ~$59 |
+| Ollama Cloud at Mistral Large 4 rates | cloud | ~$707 |
+| Local rig at GLM-5.3-Flash rates | local | ~$11 |
 
 Caveats that keep this honest:
 
@@ -322,10 +326,14 @@ Caveats that keep this honest:
 - **The served proxy and Ollama Cloud costs are prepaid or institution-level**
   and not visible to the lead tester; the reroute rows are the only apples-to-
   apples comparison available.
-- **The local share is small by volume, and that is the point**: the rig's 17M
-  input tokens are a rounding error next to the proxy's 1,388M, but they were
-  free and private, and the local sessions were the longest and most agentic
-  (marathons like the 8h49m BEAST2 debugging run in 09).
+- **The local share is small by spend, not by traffic**: llama.cpp-style
+  servers log the cache misses as input and the reused prefix separately, so
+  a raw input count would show the rig at 18M; with cache reads counted the
+  rig served about 261M prompt tokens against the proxy's 1,445M, all of it
+  re-read from VRAM for free. Rerouted at Flash list prices that volume would
+  cost about $11; on the rig it cost electricity. The local sessions were
+  also the longest and most agentic (marathons like the 8h49m BEAST2
+  debugging run in 09).
 
 ### Subscriptions: what $20 actually buys
 

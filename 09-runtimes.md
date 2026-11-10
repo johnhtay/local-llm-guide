@@ -1,7 +1,7 @@
 # 09: The session log: runtimes and task types
 
 Benchmarks (05) tell you what a model can do; this chapter shows what it actually
-did: 352 sessions from the lead tester's own activity between June and
+did: 367 sessions from the lead tester's own activity between June and
 November 2026, with prompts, tool calls, generation time, tool time, and effective
 throughput. Not synthetic tasks, not marketing numbers: the actual tempo of five
 months of research, rig maintenance, writing, and the occasional game. The sessions
@@ -9,7 +9,7 @@ ran on three access tiers: the local dual-GPU rig, the lab's served proxy, and
 cloud endpoints (Ollama Cloud, used to benchmark open models too large for the rig;
 see [05](05-fleet-2026-11.md)).
 
-The tables split the log in two. The work tables carry 274 sessions: research, rig
+The tables split the log in two. The work tables carry 289 sessions: research, rig
 maintenance, manuscripts, this guide. The other 78 are capability testing (games,
 creative builds), personal tasks (household finance, shopping, device admin,
 third-party resume reviews), or plain chats; they get their own tables in "The
@@ -19,9 +19,9 @@ minimums, so work plus home reproduces the full log. The script
 give the complete picture (every session, no work filter). The same log, mined
 for failures and who fixes them, is chapter [10](10-pitfalls.md).
 
-One timing note: the tables are a 2026-11-08 snapshot. The guide's two build
+One timing note: the tables are a 2026-11-10 snapshot. The guide's two build
 sessions (11-04 and 11-05) are closed and their rows are final; the newest row,
-the session that updated these very tables, was still open when it was mined, so
+the session that ran this update, was still open when it was mined, so
 its numbers keep moving; regenerating the tables updates them.
 
 ## Where the data comes from
@@ -113,7 +113,7 @@ Caveats, before comparing anything:
 - A session that switched engines midway is listed under its final model.
 - Single user, single machine, no quality scoring: that is the benchmark set's job.
 
-## The fleet at work: 274 work sessions
+## The fleet at work: 289 work sessions
 
 The table is split into two. **Local** is everything that ran on the lead tester's
 hardware: the llama.cpp dual-GPU fleet and the Strata engine (which serves its
@@ -126,7 +126,7 @@ included for both tables wherever a session's streaming coverage passes the 80%
 bar; the coverage reality, not a policy choice, decides where n/a appears.
 Two models joined the local fleet on 11-05 and have been working since:
 Groot-19B-A3B on the 4080 (three log rows so far, 46-92 tok/s) and Occamy-1.0 A3B
-on the dual-GPU 28GB split (nine rows across work and home, 40-72 tok/s). The
+on the dual-GPU 28GB split (thirteen rows across work and home, 40-71 tok/s). The
 11-08 fleet comparison ranked Occamy into Tier A as the coding/agentic pick (see
 [05](05-fleet-2026-11.md)); Groot remains under evaluation.
 
@@ -140,6 +140,8 @@ IQ2_XS from local disk (Tier C); **(free tier)** = OpenCode's free cloud models.
 
 | Date | Engine | Task | Prompts | Tool calls | Think | Tools | Tool share | Active | Span med | Gen tok | ~tok/s |
 |------|---------|-----------|--------|----|----------|----------|-----|----------|------|--------|------|
+| 11-10 | occamy-1.0 (local) | Heterochronous influenza tree simulations | 3 | 262 | 55m56s | 3m49s | 7% | 59m45s | 5.9s | 222,865 | 66 |
+| 11-09 | occamy-1.0 (local) | Arc Pro B70 vs R9700 for llama.cpp | 3 | 11 | 4m46s | 0m12s | 4% | 4m58s | 28.2s | 13,902 | 49 |
 | 11-06 | occamy-1.0 (local) | phyloplate Source tab visual bug | 4 | 64 | 11m40s | 3m46s | 32% | 15m26s | 3.6s | 27,884 | 40 |
 | 11-06 | sage-a1.5 (local) | 5060 Ti vs Arc B60 for LLMs | 4 | 63 | 13m38s | 0m16s | 2% | 13m55s | 8.8s | 38,042 | 46 |
 | 11-06 | occamy-1.0 (local) | PhyloMAP 2026 phylodynamics slides | 1 | 29 | 8m03s | 0m43s | 9% | 8m47s | 10.2s | 24,819 | 51 |
@@ -207,9 +209,10 @@ first question this table invites:
 ### Cloud
 
 The cloud rows are dominated by two uses: the lab proxy (`medium`/`big`/`small`)
-for daily work, and Ollama Cloud for benchmarking open models too large for the
-rig (Kimi K2.6/K2.7-code, MiniMax M3/M3.1, GLM 5.2/5.3, Mistral Large 4; the
-benchmarks behind the [05](05-fleet-2026-11.md) ranking). On averages the lab
+for daily work, and Ollama Cloud for open models too large for the rig,
+benchmarked for the [05](05-fleet-2026-11.md) ranking and also used for heavy
+science audits (Kimi K2.6/K2.7-code and K3.1-pro, MiniMax M3/M3.1, GLM 5.2/5.3,
+Mistral Large 4). On averages the lab
 proxy is faster than the local fleet, not slower: see "What the averages say"
 below. The Ollama Cloud benchmark rows land in the same band as the proxy, and
 that is the interesting part: the cloud tier buys model size, and the tempo
@@ -217,11 +220,24 @@ holds up anyway.
 
 | Date | Engine | Task | Prompts | Tool calls | Think | Tools | Tool share | Active | Span med | Gen tok | Reason tok | Out tok | ~tok/s |
 |-----------|------------------|-----------------------|-----------------|--------|----------------------|----------------------|-----------|----------------------|------------|--------------------|------------------|------------------|-------------|
-| 11-08 | medium (served) | Axion Occamy Sage metrics update | 2 | 192 | 37m44s | 1m36s | 4% | 39m20s | 5.7s | 143,487 | 112,520 (78%) | 30,967 (22%) | 63 |
+| 11-10 | medium (served) | Ch09 runtimes ch10 pitfalls numbers | 1 | 62 | 5m56s | 0m25s | 7% | 6m22s | 4.0s | 69,821 | 59,344 (85%) | 10,477 (15%) | 196 |
+| 11-10 | big (served) | Skills audit for correctness | 2 | 111 | 3h21m16s | 0m13s | 0% | 3h21m30s | 28.5s | 78,968 | 66,896 (85%) | 12,072 (15%) | 7 |
+| 11-10 | medium (served) | llama.cpp benchmark run log history | 6 | 43 | 9m03s | 0m04s | 1% | 9m07s | 5.5s | 55,797 | 51,800 (93%) | 3,997 (7%) | 103 |
+| 11-10 | medium (served) | Agent work PPTX refinement | 2 | 50 | 18m18s | 1m31s | 8% | 19m49s | 6.4s | 47,225 | 36,911 (78%) | 10,314 (22%) | 43 |
+| 11-10 | kimi-k3.1-pro (ollama-cloud) | BEAST X 10.5 skills audit | 1 | 48 | 7m06s | 0m34s | 8% | 7m41s | 15.4s | 14,436 | 348 (2%) | 14,088 (98%) | 34 |
+| 11-10 | kimi-k3.1-pro (ollama-cloud) | Verify epoch and MMM claims | 1 | 89 | 6m07s | 0m04s | 1% | 6m12s | 20.7s | 16,276 | 0 (0%) | 16,276 (100%) | 44 |
+| 11-10 | kimi-k3.1-pro (ollama-cloud) | Verify remaining audit claims | 1 | 113 | 5m26s | 0m50s | 16% | 6m17s | 19.6s | 12,131 | 0 (0%) | 12,131 (100%) | 37 |
+| 11-10 | kimi-k3.1-pro (ollama-cloud) | Verify operator audit claims | 1 | 123 | 5m25s | 0m47s | 15% | 6m12s | 20.6s | 12,851 | 0 (0%) | 12,851 (100%) | 40 |
+| 11-10 | kimi-k3.1-pro (ollama-cloud) | Verify priors and clock claims | 1 | 94 | 5m24s | 0m05s | 2% | 5m30s | 22.3s | 11,418 | 0 (0%) | 11,418 (100%) | 35 |
+| 11-10 | medium (served) | Virus identification from Newick tree | 1 | 30 | 13m57s | 0m02s | 0% | 13m59s | 5.8s | 47,181 | 40,276 (85%) | 6,905 (15%) | 56 |
+| 11-10 | medium (served) | Beast2 Remaster install verification | 2 | 42 | 3m36s | 0m34s | 16% | 4m11s | 2.9s | 8,754 | 7,096 (81%) | 1,658 (19%) | 41 |
+| 11-09 | medium (served) | LLM phylogenetic dating benchmark | 2 | 13 | 3m03s | 0m00s | 0% | 3m04s | 4.8s | 25,459 | 22,034 (87%) | 3,425 (13%) | 138 |
+| 11-10 | big (served) | Nature Comms Perspective desk rejection | 1 | 17 | 5m20s | 0m11s | 4% | 5m32s | 23.0s | 16,451 | 16,451 (100%) | 0 (0%) | 51 |
+| 11-08 | medium (served) | Occamy prefill and decode rates | 13 | 68 | 16m04s | 0m01s | 0% | 16m05s | 3.6s | 55,661 | 49,626 (89%) | 6,035 (11%) | 58 |
+| 11-08 | medium (served) | Axion Occamy Sage metrics update | 2 | 225 | 40m11s | 2m15s | 6% | 42m26s | 5.2s | 162,195 | 128,811 (79%) | 33,384 (21%) | 67 |
 | 11-08 | medium (served) | Axion, Occamy, and Sage comparison | 6 | 93 | 33m59s | 0m55s | 3% | 34m55s | 32.0s | 125,719 | 105,614 (84%) | 20,105 (16%) | 62 |
 | 11-06 | medium (served) | GPU0 low clock in Occamy | 31 | 184 | 2h21m28s | 1h42m06s | 72% | 4h03m35s | 5.5s | 314,311 | 298,053 (95%) | 16,258 (5%) | 37 |
 | 11-08 | medium (served) | Arete-27B fleet comparison | 5 | 45 | 29m55s | 6m10s | 21% | 36m06s | 32.1s | 95,113 | 90,984 (96%) | 4,129 (4%) | 53 |
-| 11-08 | medium (served) | Occamy prefill and decode rates | 3 | 22 | 7m46s | -1m59s | -0% | 7m45s | 3.3s | 18,393 | 16,994 (92%) | 1,399 (8%) | 39 |
 | 11-08 | medium (served) | Opencode compaction by context size | 4 | 48 | 20m58s | 3m27s | 16% | 24m25s | 5.8s | 127,133 | 123,416 (97%) | 3,717 (3%) | 101 |
 | 11-06 | medium (served) | Evaluating Sage's comparison | 2 | 40 | 11m48s | 0m09s | 1% | 11m57s | 5.4s | 114,565 | 99,975 (87%) | 14,590 (13%) | 162 |
 | 11-06 | medium (served) | Occamy vs Sage for science | 1 | 13 | 3m13s | 0m20s | 11% | 3m34s | 7.4s | 25,180 | 25,112 (100%) | 68 (0%) | 130 |
@@ -503,7 +519,7 @@ working style, not only with hardware.
 
 Single rows invite cherry-picking, and the tool share column shows why the
 ~tok/s column must be read with care. The table below (fifth output block of
-`scripts/mine_runtimes.py`) aggregates the same 274 sessions by era and tier:
+`scripts/mine_runtimes.py`) aggregates the same 289 sessions by era and tier:
 median ~tok/s, token-weighted mean (total tokens divided by total think
 seconds), and a tool-corrected mean that divides tokens by the generation-only
 part of the think window (think minus tools; an upper bound on decode speed,
@@ -515,17 +531,17 @@ tools above think are excluded from the corrected column.
 | v1 (pre 10-22) | Local rig | 15 | 12.4 | 11.2 | 12.5 |
 | v1 (pre 10-22) | Lab proxy (served) | 100 | 33.2 | 20.8 | 66.1 |
 | v1 (pre 10-22) | Ollama Cloud | 78 | 26.8 | 22.2 | 40.4 |
-| v2 (10-22 and later) | Local rig | 24 | 34.5 | 24.2 | 47.1 |
-| v2 (10-22 and later) | Lab proxy (served) | 54 | 67.0 | 57.8 | 110.0 |
-| v2 (10-22 and later) | Ollama Cloud | 3 | 64.4 | 72.3 | 110.5 |
+| v2 (10-22 and later) | Local rig | 26 | 37.1 | 25.9 | 48.8 |
+| v2 (10-22 and later) | Lab proxy (served) | 62 | 64.7 | 54.4 | 94.7 |
+| v2 (10-22 and later) | Ollama Cloud | 8 | 41.9 | 66.5 | 95.1 |
 | pre 10-29 medium swap | Lab proxy (served) | 117 | 36.8 | 23.7 | 73.1 |
-| 10-29 and later | Lab proxy (served) | 37 | 95.6 | 80.8 | 117.1 |
+| 10-29 and later | Lab proxy (served) | 45 | 91.2 | 70.2 | 94.0 |
 
 The headline pair, drawn:
 
 ![Effective session speed: served proxy vs local rig](charts/served-vs-local-speed.png)
 
-*Generated tokens per think-second, v2 era (54 served, 24 local sessions):
+*Generated tokens per think-second, v2 era (62 served, 26 local sessions):
 raw, with tool time inside the denominator, and tool-corrected. The correction
 more than doubles both tiers and the served lead survives it. The medians, the
 v1 era, and Ollama Cloud's rows are in the table above.*
@@ -534,22 +550,26 @@ Reading:
 
 - **On averages, the lab proxy is faster than the local fleet in both eras,
   with or without the tool correction.** In the v2 era the proxy's
-  token-weighted rate is 57.8 against the local rig's 24.2; tool-corrected,
-  110.0 against 47.1. The folklore that "local models are faster" holds for
+  token-weighted rate is 54.4 against the local rig's 25.9; tool-corrected,
+  94.7 against 48.8. The folklore that "local models are faster" holds for
   instantaneous decode speed on the benchmark table ([05](05-fleet-2026-11.md)),
   not for the average runtime of agentic sessions.
 - **The served tier carries the same tool-time distortion, and the correction
-  is cross-checkable there.** Tool waiting is 47% of the v2 served think
-  windows (the local rig: 49%) and roughly two-thirds in v1, so the raw column
+  is cross-checkable there.** Tool waiting is 43% of the v2 served think
+  windows (the local rig: 47%) and roughly two-thirds in v1, so the raw column
   understates served decode by about the same factor as the local one. A
   second, independent check: the database stamps the end of each message's
   generation (the Span med stamp), and dividing tokens by the summed
-  generation spans alone reproduces the corrected column within a percent
-  (110.2 tok/s against the tabulated 110.0 for v2 served, 47.4 against 47.1
-  for the v2 local rig). The correction is
-  not an artifact of one tier's accounting.
+  generation spans reproduces the corrected column for the v2 local rig
+  within a percent (49.1 tok/s against the tabulated 48.8). The served tier
+  reads 105.3 against 94.7, an 11% gap that traces to interrupted
+  generations: a message cut off before its stream ends keeps its full think
+  window but carries no stream stamp, so its tokens count against no span
+  time (one 2.4-hour interrupted window is the whole gap; where streams did
+  end, span sums match think minus tools to within seconds). The correction
+  is not an artifact of one tier's accounting.
 - **The local rig's low averages are mostly tool time, not slow decode.**
-  Tool-corrected, the v2 local rig reaches 47.1 tok/s, close to what its
+  Tool-corrected, the v2 local rig reaches 48.8 tok/s, close to what its
   decode-plus-prefill windows allow at 150k-230k context depths. The v1 local
   fleet shows the same pattern at the bottom of the table (11.2 raw, 12.5
   corrected): those were shallow chat-era sessions where tools were rare, so
@@ -557,36 +577,36 @@ Reading:
 - **The served tier's v2 jump is mostly the model, not the switch.** The lab
   proxy's default medium model changed to GLM 5.3 Flash NVFP4 on 10-29;
   splitting the served tier at that date gives 36.8 median before (v1 plus the
-  first v2 week pooled) and 95.6 after. The v2 cutover itself contributes
+  first v2 week pooled) and 91.2 after. The v2 cutover itself contributes
   little to throughput.
 - **The v1 Tool-corrected column reads high.** v1 tool spans begin when the
   model finishes emitting the call, so the subtraction removes call-emission
   decode from the corrected window; treat the v1 corrections as upper bounds
   with a wider margin than the v2 ones.
 - **Ollama Cloud sits in the same band as the proxy.** Token-weighted 22.2 in
-  v1 (n=78) and 72.3 in v2 (n=3), against the proxy's 20.8 and 57.8. The
-  per-row spread is the widest of any tier (2 to 146), which is the real
+  v1 (n=78) and 66.5 in v2 (n=8), against the proxy's 20.8 and 54.4. The
+  per-row spread is the widest of any tier (1 to 146), which is the real
   price of model size: the big open models reason slowly token by token on
   some tasks and pour tokens on others.
 - **Most of the served tier's tokens are thinking, not prose.** The usage
   ledger splits reasoning from output for the served models: 80% of
-  litellm/medium's 12.2M generated tokens are reasoning, 85% for big. The
+  litellm/medium's 12.5M generated tokens are reasoning, 85% for big. The
   same ledger cannot split the local fleet's tokens: llama-server counts
   thinking as ordinary completion, so the local table shows only the Gen
   tok total even when the transcripts are full of it.
 
 ## Observations
 
-- **The lab proxy wins on tempo, era for era.** The averages above: 57.8 vs
-  24.2 token-weighted in the v2 era (110.0 vs 47.1 tool-corrected), 20.8 vs
-  11.2 in v1. Per row, litellm/medium reached 36-226 effective tok/s on
-  research and writing tasks where the local fleet landed 0-92; after the
-  10-29 model swap the proxy's fast rows run 100-226.
+- **The lab proxy wins on tempo, era for era.** The averages above: 54.4 vs
+  25.9 token-weighted in the v2 era (94.7 vs 48.8 tool-corrected), 20.8 vs
+  11.2 in v1. Per row, litellm/medium reached up to 226 effective tok/s across
+  the work tables where the local fleet landed 0-92; after the
+  10-29 model swap the proxy's fastest rows run 100-226.
 - **Cloud buys model size, and the tempo holds.** The Ollama Cloud rows are how
   the ranking in [05](05-fleet-2026-11.md) covers open models the rig cannot
-  hold (Kimi K2.6/K2.7-code, MiniMax M3/M3.1, GLM 5.2/5.3, Mistral Large 4).
+  hold (Kimi K2.6/K2.7-code and K3.1-pro, MiniMax M3/M3.1, GLM 5.2/5.3, Mistral Large 4).
   Their averages match or beat the lab proxy's (22.2 vs 20.8 token-weighted in
-  v1, 72.3 vs 57.8 in v2 on three sessions); their reach, not their speed, is
+  v1, 66.5 vs 54.4 in v2 on eight sessions); their reach, not their speed, is
   the reason they are on this tier.
 - **Marathons happen on both sides.** The single biggest work session (24h08m
   active, 958 tool calls, 1.5M generated tokens) ran served; the local fleet
@@ -619,17 +639,17 @@ script is `scripts/agg_task_types.py` in this repo):
 
 | Task type | Sessions | Active total | Share | Avg per session |
 |---|---|---|---|---|
-| Fleet, tooling & config | 143 | 141h15m | 40.10% | 0h59m |
-| Science & manuscripts | 100 | 125h23m | 35.61% | 1h15m |
-| Games & creative | 47 | 41h42m | 11.85% | 0h53m |
-| Other (chats, Q&A, news) | 34 | 20h11m | 5.74% | 0h35m |
-| This Tutorial & documentation | 5 | 12h25m | 3.53% | 2h29m |
-| Personal & admin | 23 | 11h09m | 3.17% | 0h29m |
-| **All sessions** | **352** | **352h09m** | 100.00% | 1h00m |
+| Fleet, tooling & config | 147 | 145h02m | 39.99% | 0h59m |
+| Science & manuscripts | 109 | 127h33m | 35.17% | 1h10m |
+| Games & creative | 47 | 46h03m | 12.70% | 0h58m |
+| Other (chats, Q&A, news) | 36 | 20h23m | 5.62% | 0h33m |
+| This Tutorial & documentation | 5 | 12h29m | 3.44% | 2h29m |
+| Personal & admin | 23 | 11h09m | 3.08% | 0h29m |
+| **All sessions** | **367** | **362h41m** | 100.00% | 0h59m |
 
 Three readings:
 
-- Games and creative builds are 12% of active compute. They are what I
+- Games and creative builds are 13% of active compute. They are what I
   demonstrate to others, because a playable build is a better demo than a quant
   hunt. That is still real capability testing, and it is how the fleet got fast
   and reliable, but it is a minority of the compute. (The share shifted slightly
@@ -640,10 +660,10 @@ Three readings:
   14h56m MCP diagnosis). This is the maintenance tax of running your own
   infrastructure: every capability gain in this guide was paid for in tooling
   hours.
-- Science and manuscripts take 36%, concentrated in PhyloPlate and the preprint
+- Science and manuscripts take 35%, concentrated in PhyloPlate and the preprint
   audit; the remainder is chats, admin, and this guide. The work-filtered
   session log above shows the same period day by day for the
-  274 work sessions only; "The fleet at home" below shows the other 78.
+  289 work sessions only; "The fleet at home" below shows the other 78.
 
 (First session June 2026. Active = generation plus tool time, the same definition
 as the tables above, and the same double-count: tool time also sits inside the
@@ -659,14 +679,15 @@ resume checks), and plain chats. They are not noise: this is where the fleet
 gets exercised for fun, where the same question goes to several models in a row,
 and where two retired models logged their farewell sessions. Same columns, same
 definitions, same wall and activity minimums as the work tables, so work plus
-home reproduces the full 352-session log. Engine labels are the ones defined
+home reproduces the full 367-session log. Engine labels are the ones defined
 above.
 
 ### Local
 
 | Date | Engine | Task | Prompts | Tool calls | Think | Tools | Tool share | Active | Span med | Gen tok | ~tok/s |
 |------|---------|-----------|--------|----|----------|----------|-----|----------|------|--------|------|
-| 11-08 | occamy-1.0 (local) | Revolver secondary projectile bug | 1 | 15 | 2m02s | 0m00s | 1% | 2m03s | 4.9s | 4,065 | 33 |
+| 11-08 | occamy-1.0 (local) | Revolver secondary projectile bug | 17 | 626 | 3h32m40s | 35m41s | 17% | 4h08m21s | 5.6s | 714,039 | 56 |
+| 11-03 | occamy-1.0 (local) | Projectile impact and explosion radius | 14 | 261 | 1h23m58s | 5m05s | 6% | 1h29m03s | 10.0s | 201,481 | 40 |
 | 11-08 | sage-a1.5 (local) | Sniper weapon zoom and damage tuning | 3 | 358 | 1h15m00s | 0m30s | 1% | 1h15m31s | 6.1s | 278,780 | 62 |
 | 11-08 | occamy-1.0 (local) | Enemy behavior variety | 11 | 228 | 57m31s | 2m07s | 4% | 59m39s | 7.4s | 151,408 | 44 |
 | 11-08 | occamy-1.0 (local) | Rocket direction reversal | 5 | 198 | 1h00m31s | 3m07s | 5% | 1h03m38s | 6.5s | 181,842 | 50 |
@@ -674,7 +695,6 @@ above.
 | 11-08 | occamy-1.0 (local) | Enemy spawn rate initialization | 3 | 12 | 4m14s | 0m00s | 0% | 4m14s | 6.4s | 18,009 | 71 |
 | 11-06 | occamy-1.0 (local) | Teleport bug and weapon sounds | 31 | 715 | 2h08m46s | 8m02s | 6% | 2h16m48s | 4.3s | 387,330 | 50 |
 | 11-03 | sage-a1.5 (local) | Three.js procedural horse animation | 6 | 331 | 2h13m34s | 25m18s | 19% | 2h38m53s | 5.8s | 495,460 | 62 |
-| 11-03 | ornith-1.5-35b (local) | Projectile impact and explosion radius | 9 | 209 | 1h09m30s | 4m59s | 7% | 1h14m29s | 10.0s | 163,288 | 39 |
 | 11-02 | sage-a1.5 (local) | Multi-weapon bug fixes | 6 | 572 | 3h52m26s | 26m38s | 11% | 4h19m04s | 6.5s | 691,258 | 50 |
 | 11-01 | sage-a1.5 (local) | Pre-feature bug and flag check | 16 | 590 | 3h13m12s | 21m11s | 11% | 3h34m23s | 6.3s | 571,794 | 49 |
 | 11-01 | flint (local) | Enemy projectile behavior design | 15 | 502 | 3h11m00s | 8m06s | 4% | 3h19m07s | 4.9s | 723,791 | 63 |
@@ -716,11 +736,13 @@ sage-a1.5, flint, tiel-coder-35b, occamy-1.0 and ornith-1.5-35b are one project:
 in Three.js, iterated session after session (pathing, weapons, rendering, bug
 fixes) the way the science sessions iterate on a manuscript; the 10-29 pathing
 session alone spent 6h10m active and 1.04M generated tokens. Occamy-1.0 picked
-the project up on 11-06 and ran four more fix sessions through 11-08 (the
-teleport-and-audio session alone: 31 prompts, 715 tool calls, 2h17m active),
+the project up on 11-06 and ran six more fix sessions through 11-09 (the
+teleport-and-audio session alone: 31 prompts, 715 tool calls, 2h17m active; its
+two revolver-bug sessions together: 21 prompts, 706 tool calls, 5h07m active),
+taking over the 11-03 projectile session Ornith-1.5 had started along the way,
 with sage-a1.5 taking one on 11-08 and Axion-1.0-35B its single appearance: the
 revolver-secondary-projectile task it left unfinished, which Occamy-1.0 redid
-in its own session the same day. The home log is
+the same day. The home log is
 also where model bake-offs happen: the 10-23 CV check ran the same resume past
 four engines in a morning, the Milankovitch cycles visualizer was rebuilt on
 seven engines between 09-23 and 10-26 (two of them cloud, see below), and the
@@ -783,7 +805,7 @@ sit at 0 to 2%. The ledger cannot say how much of that gap is the models and
 how much is the host's accounting.
 
 > **Takeaway:** The five-month log: two fifths of active time is rig upkeep,
-> over a third is science, games are 12%. The work tables (274 sessions) and
+> over a third is science, games are 13%. The work tables (289 sessions) and
 > the home tables (78) cover the same period with the same columns. On tempo
 > the served tier wins on averages in both eras; the local rig's low session
 > numbers are tool time, not slow decode.

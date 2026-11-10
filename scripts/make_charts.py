@@ -549,35 +549,35 @@ bar_rows(GPU_PRICES, 260, "euros per gigabyte of memory (lower is better)",
 # the table's own; per-tier end labels use the table's headline rates, segment
 # labels are rounded to one decimal.
 FAILURES_BY_TIER = [
-    ("Pasteur served (160 sessions)", [
-        ("fail-real", 4.02, "4.0"), ("fail-fumble", 1.39, "1.4"),
-        ("fail-ext", 0.45, "0.5"), ("fail-abort", 0.05, "")], ""),
-    ("Ollama Cloud (102 sessions)", [
-        ("fail-real", 4.20, "4.2"), ("fail-fumble", 1.45, "1.5"),
-        ("fail-ext", 1.50, "1.5"), ("fail-abort", 0.01, "")], ""),
-    ("Local rig (82 sessions)", [
-        ("fail-real", 3.66, "3.7"), ("fail-fumble", 3.05, "3.1"),
-        ("fail-ext", 0.28, ""), ("fail-abort", 0.13, "")], ""),
+    ("Pasteur served (168 sessions)", [
+        ("fail-real", 4.06, "4.1"), ("fail-fumble", 1.37, "1.4"),
+        ("fail-ext", 0.45, "0.4"), ("fail-abort", 0.05, "")], ""),
+    ("Ollama Cloud (107 sessions)", [
+        ("fail-real", 4.04, "4.0"), ("fail-fumble", 1.44, "1.4"),
+        ("fail-ext", 1.55, "1.5"), ("fail-abort", 0.01, "")], ""),
+    ("Local rig (84 sessions)", [
+        ("fail-real", 3.90, "3.9"), ("fail-fumble", 2.99, "3.0"),
+        ("fail-ext", 0.26, ""), ("fail-abort", 0.11, "")], ""),
 ]
 
 stacked_bars(FAILURES_BY_TIER, 9, "failures per 100 tool calls",
              "Where the failures come from: split by kind",
              "The tier table above, split by kind: real failures land at nearly the same rate on every tier; fumbles and bot-walls differ.",
              "failures-by-tier.svg", ["fail-real", "fail-fumble", "fail-ext", "fail-abort"],
-             step=2, end_kind=["5.9 per 100 calls", "7.2 per 100 calls", "7.1 per 100 calls"])
+             step=2, end_kind=["5.9 per 100 calls", "7.0 per 100 calls", "7.3 per 100 calls"])
 
 # ch09: the served-vs-local punchline from the averages table, v2 era,
 # token-weighted (raw) and tool-corrected.
 SPEED_PUNCH = [
     ("Raw: tool time included", [
-        (57.8, "spd-served", "57.8"), (24.2, "spd-local", "24.2")], ""),
+        (54.4, "spd-served", "54.4"), (25.9, "spd-local", "25.9")], ""),
     ("Tool-corrected", [
-        (110.0, "spd-served", "110.0"), (47.1, "spd-local", "47.1")], ""),
+        (94.7, "spd-served", "94.7"), (48.8, "spd-local", "48.8")], ""),
 ]
 
 bar_rows(SPEED_PUNCH, 120, "generated tokens per think-second (~tok/s)",
          "Effective session speed: served proxy vs local rig",
-         "v2 era (2026-10-22 onward), 54 served and 24 local sessions; tool-corrected divides out tool-wait time. Data: scripts/mine_runtimes.py.",
+         "v2 era (2026-10-22 onward), 62 served and 26 local sessions; tool-corrected divides out tool-wait time. Data: scripts/mine_runtimes.py.",
          "served-vs-local-speed.svg", ["spd-served", "spd-local"], bar_h=13, step=20)
 
 # ch05: decode speed by context depth. Same session logs as the table above

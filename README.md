@@ -50,7 +50,7 @@ only when a line is not enough. Each chapter also closes with a fuller
 | [06-use-cases.md](06-use-cases.md) | Real scientific output exists; published agentic-science evidence is thin (114 of 135 failed integrity checks); verification is yours. | 8 min |
 | [07-ecosystem.md](07-ecosystem.md) | MCP servers, skills, plugins are the wheels: PubMed, web search, BEASTX skills. | 7 min |
 | [08-optimisations.md](08-optimisations.md) | Two levers: speculative decoding for speed, context-memory dialing for capacity. | 8 min |
-| [09-runtimes.md](09-runtimes.md) | Two fifths maintenance, over a third science, games 12 percent: the five-month tempo, at work and at home. | 16 min |
+| [09-runtimes.md](09-runtimes.md) | Two fifths maintenance, over a third science, games 13 percent: the five-month tempo, at work and at home. | 16 min |
 | [10-pitfalls.md](10-pitfalls.md) | Models retry 9 in 10 of their own failures; the rest are bugs only a human can see, and the games half needs twice the human fixes. | 4 min |
 | [11-flagship-models.md](11-flagship-models.md) | About 27 points of capability gap, 10-16× in price; the gap is closing. | 12 min |
 | [12-hardware-and-costs.md](12-hardware-and-costs.md) | One build and one launcher per tier, from about €400; the rig is a different product, not a worse frontier. | 19 min |
@@ -100,23 +100,21 @@ pandoc README.md 01-huggingface.md 02-hardware-fit.md 03-llamacpp-server.md \
 
 This guide was written the way it describes: inside the same session log that
 [09](09-runtimes.md) tabulates. The sessions run inside this repository's
-directory (seven by 2026-11-08: the build session itself, a speed re-evaluation
+directory (eight by 2026-11-10: the build session itself, a speed re-evaluation
 of ch 09's tables, an Occamy-1.0 performance pass on ch 09 and ch 10, a wording
-pass, a sensitive-data check before publication, a free-journal inquiry, and
-the metrics update that fed this chapter's numbers) add up to 104 prompts,
-about 3,400 tool calls, and about 10.5 hours of active assistant time, for
-about 330 million input tokens and 3.7 million generated tokens, reasoning
-included. Priced at the lab proxy's own rates for the models that actually ran
-them (GLM-5.3-Flash at $0.15 per million input and $0.50 per million output, and
-GLM-5.3 at $0.07 and $1.40 for the two sessions that used it), the bill is
-<mark>**about $51**</mark>, a ceiling that assumes no prompt-cache discounts.
-Almost all of it is
-input: agentic sessions re-read their context on every turn, and the build
-session alone, at more than 200 million input tokens, is about two thirds of
-the total. Pricing everything at Flash rates would change little
-(<mark>**about $52**</mark>); at big rates throughout, <mark>**about
-$28**</mark>. The whole five-month log behind ch 09 and
-ch 10 prices the same way at <mark>**about $440**</mark> medium and
-<mark>**about $240**</mark> big;
-[12](12-hardware-and-costs.md) carries that table and the channel-by-channel
-reroute.
+pass, a sensitive-data check before publication, a free-journal inquiry, a
+fleet-metrics update, and the 11-10 metrics resync that fed this chapter's
+numbers) add up to 106 prompts, about 3,600 tool calls, and about 11 hours of
+active assistant time, for about 370 million input tokens and 3.9 million
+generated tokens, reasoning included. Priced at the models' list rates on
+OpenRouter as of 2026-11-10 (GLM-5.3-Flash at $0.04 per million input and $0.08
+per million output, and GLM-5.3 at $0.07 and $1.40 for the two sessions that
+used it), the bill is <mark>**about $16**</mark>, a ceiling that assumes no
+prompt-cache discounts. Almost all of it is input: agentic sessions re-read
+their context on every turn, and the build session alone, at more than 200
+million input tokens, is just over half of the total. Pricing everything at
+Flash rates would shave it slightly (<mark>**about $15**</mark>); at big rates
+throughout, <mark>**about $31**</mark>. The whole five-month log behind ch 09
+and ch 10 prices the same way at <mark>**about $160**</mark> medium and
+<mark>**about $325**</mark> big; [12](12-hardware-and-costs.md) carries that
+table and the channel-by-channel reroute.

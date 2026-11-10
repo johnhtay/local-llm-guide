@@ -8,18 +8,24 @@ home tiers summed together. The README's closing paragraph quotes the repo
 scope below and points at ch 12 for these whole-log totals.
 
 Cost scenarios price every token of that session set at the lab proxy's two
-tiers, using ch 12's per-token table (OpenRouter, November 2026, USD per
+tiers, using ch 12's per-token table (OpenRouter, checked 2026-11-10, USD per
 million tokens): GLM-5.3 ("big") $0.07 in / $1.40 out, GLM-5.3-Flash
-("medium") $0.15 in / $0.50 out. Raw input tokens, no cache discounts, so the
-figures are ceilings, same convention as ch 12's reroute table.
+("medium") $0.04 in / $0.08 out (it listed $0.15/$0.50 when the table was
+first written; prices drift). Input volume counts full prompts, cache reads
+included: opencode records only the tokens a server actually processed as
+input and logs the reused prefix separately as cache reads, so the raw input
+column understates llama.cpp-style traffic by an order of magnitude. No
+cache discounts anywhere, so the figures are ceilings, same convention as
+ch 12's reroute table.
 
 A second scope prints the repo's own bill: sessions whose opencode directory
-is the tutorial repo itself. These are the same four sessions the task-type
-classifier in agg_task_types.py buckets as "This Tutorial & documentation"
-(the build session, the ch 09 speed re-evaluation, the wording pass, and the
-pre-publication sensitive-data check). Those sessions ran on the proxy's own
-medium/big tiers, so the counterfactual there is close to what actually
-happened.
+is the tutorial repo itself (eight by 2026-11-10: the build session, the ch 09
+speed re-evaluation, an Occamy-1.0 performance pass, the wording pass, the
+pre-publication sensitive-data check, a free-journal inquiry, the 11-08
+fleet-metrics update, and the 11-10 metrics resync). All but the Occamy pass
+ran on the proxy's own medium/big tiers, so the counterfactual there is close
+to what actually happened; the Occamy pass ran on the local rig and is priced
+at Flash rates, the cheapest sensible channel, same rule as ch 12's reroute.
 
 Stdout only: the README paragraph quotes these numbers by hand, so re-run and
 re-check the prose after any data change (the log keeps growing; see the live
@@ -35,20 +41,22 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mine_runtimes as mr  # noqa: E402
 from agg_task_types import is_excluded, is_warming_artifact  # noqa: E402
 
-GLM_BIG = (0.07, 1.40)    # input, output per million tokens (GLM-5.3, "big")
-GLM_FLASH = (0.15, 0.50)  # GLM-5.3-Flash, "medium"
+GLM_BIG = (0.07, 1.40)    # input, output per million tokens (GLM-5.3, "big"; OpenRouter, checked 2026-11-10)
+GLM_FLASH = (0.04, 0.08)  # GLM-5.3-Flash, "medium" (OpenRouter, checked 2026-11-10; was $0.15/$0.50 on 2026-11-08)
 
-# Reroute vendors mirror ch12's per-token table (OpenRouter, Nov 2026); update
-# both together. "served" rows price the served tier's volume, "ollama" rows
-# the Ollama Cloud tier's volume.
+# Reroute vendors mirror ch12's per-token table (OpenRouter, checked
+# 2026-11-10); update both together. "served" rows price the served tier's
+# volume, "ollama" rows the Ollama Cloud tier's volume, "local" rows the
+# local rig's volume.
 REROUTE = [
     ("GPT-6 Astra", "served", (10.00, 50.00)),
     ("Claude Fable 5.1", "served", (10.00, 50.00)),
     ("Claude Opus 5.5", "served", (4.00, 20.00)),
     ("Claude Sonnet 5.5", "served", (2.00, 10.00)),
     ("Gemini 3.8 Flash", "served", (0.83, 4.12)),
-    ("GLM-5.3 Flash (OpenRouter)", "served", (0.15, 0.50)),
+    ("GLM-5.3 Flash (OpenRouter)", "served", (0.04, 0.08)),
     ("Ollama Cloud at Mistral Large 4 rates", "ollama", (0.70, 2.10)),
+    ("Local rig at GLM-5.3-Flash rates", "local", (0.04, 0.08)),
 ]
 
 
@@ -64,7 +72,8 @@ def main():
     con = sqlite3.connect(mr.DB)
     rows = con.execute(
         "SELECT id, title, model, time_created, time_updated, directory,"
-        " tokens_input, tokens_output, tokens_reasoning, cost FROM session_v2"
+        " tokens_input, tokens_output, tokens_reasoning, cost,"
+        " tokens_cache_read, tokens_cache_write FROM session_v2"
         " ORDER BY time_updated DESC").fetchall()
     n = work = home = 0
     think = tools_ms = 0
@@ -75,7 +84,7 @@ def main():
     db_cost = 0.0
     tiers = {}
     sessions = []
-    for sid, title, model, tc, tu, sdir, s_in, s_out, s_rea, s_cost in rows:
+    for sid, title, model, tc, tu, sdir, s_in, s_out, s_rea, s_cost, s_cr, s_cw in rows:
         if tu - tc < mr.MIN_WALL_MS:
             continue
         gen_ms = tool_ms = 0
@@ -105,6 +114,8 @@ def main():
         if gen_ms + tool_ms < mr.MIN_ACTIVE_MS:
             continue
         gen_tok = (s_out or 0) + (s_rea or 0)
+        # full prompt volume: reused prefix is logged as cache reads, not input
+        vol_in = (s_in or 0) + (s_cr or 0) + (s_cw or 0)
         if is_warming_artifact(title, gen_tok) or is_excluded(title):
             continue
         task = ((title or "").strip().replace("|", "/").replace("\u2014", "-")
@@ -121,28 +132,28 @@ def main():
         tools_ms += tool_ms
         prompts += npr
         ntool += ntl
-        tin += s_in or 0
+        tin += vol_in
         tout += s_out or 0
         treason += s_rea or 0
         db_cost += s_cost or 0
         t = tiers.setdefault(tier, [0, 0, 0, 0.0, 0, 0, 0, 0])
-        t[0] += s_in or 0
+        t[0] += vol_in
         t[1] += s_out or 0
         t[2] += s_rea or 0
         t[3] += s_cost or 0
         t[4] += 1
         t[5] += 0 if is_home else 1
         if not is_home:
-            t[6] += s_in or 0
+            t[6] += vol_in
             t[7] += gen_tok
         if tier == "local":
-            loc_tin += s_in or 0
+            loc_tin += vol_in
             loc_tgen += gen_tok
         else:
-            api_tin += s_in or 0
+            api_tin += vol_in
             api_tgen += gen_tok
         mid = json.loads(model).get("id", "") if model else ""
-        sessions.append((sdir or "", title, mid, s_in or 0, gen_tok,
+        sessions.append((sdir or "", title, mid, vol_in, gen_tok,
                          s_out or 0, s_rea or 0, gen_ms, tool_ms, npr, ntl))
 
     gen = tout + treason
@@ -192,10 +203,10 @@ def main():
     r_out = sum(s[5] for s in repo)
     r_rea = sum(s[6] for s in repo)
     # each session priced at its own tier: medium -> Flash, big -> GLM-5.3
-    r_cost = sum(cost(s[3], s[4], GLM_FLASH if s[2] == "medium" else GLM_BIG)
+    r_cost = sum(cost(s[3], s[4], GLM_BIG if s[2] == "big" else GLM_FLASH)
                  for s in repo)
     for s in repo:
-        c = cost(s[3], s[4], GLM_FLASH if s[2] == "medium" else GLM_BIG)
+        c = cost(s[3], s[4], GLM_BIG if s[2] == "big" else GLM_FLASH)
         print(f"  {s[1][:44]:44s} {s[2]:6s} in {s[3]/1e6:7.1f}M "
               f"gen {s[4]/1e6:4.1f}M -> ${c:.3f}")
     print(f"sessions: {len(repo)}")
