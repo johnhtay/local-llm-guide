@@ -18,6 +18,12 @@ column understates llama.cpp-style traffic by an order of magnitude. No
 cache discounts anywhere, so the figures are ceilings, same convention as
 ch 12's reroute table.
 
+The lab's own spend ledger is a separate thing: a flat $2.50 per million
+prompt tokens and $12.50 per million completion tokens on every model
+(verified against a lab usage export, 2026-11-09; opencode's session cost
+column is that rate passed through). Its reroute row prices the logged
+served volume at that internal rate.
+
 A second scope prints the repo's own bill: sessions whose opencode directory
 is the tutorial repo itself (eight by 2026-11-10: the build session, the ch 09
 speed re-evaluation, an Occamy-1.0 performance pass, the wording pass, the
@@ -55,6 +61,7 @@ REROUTE = [
     ("Claude Sonnet 5.5", "served", (2.00, 10.00)),
     ("Gemini 3.8 Flash", "served", (0.83, 4.12)),
     ("GLM-5.3 Flash (OpenRouter)", "served", (0.04, 0.08)),
+    ("Proxy's own ledger rates (flat $2.50 in / $12.50 out)", "served", (2.50, 12.50)),
     ("Ollama Cloud at Mistral Large 4 rates", "ollama", (0.70, 2.10)),
     ("Local rig at GLM-5.3-Flash rates", "local", (0.04, 0.08)),
 ]

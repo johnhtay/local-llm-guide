@@ -295,7 +295,7 @@ the model driving tools itself):
 
 | Volume | Input | Output |
 |---|---|---|
-| Served proxy ("medium" = GLM 5.3 Flash) | 1,445M | 14.2M |
+| Served proxy ("medium" = GLM 5.3 Flash) | 1,448M | 14.2M |
 | Ollama Cloud (big open models) | 997M | 4.2M |
 | Local rig | 261M | 2.4M |
 
@@ -304,12 +304,13 @@ channels:
 
 | Reroute the same usage through | Volume basis | Approx. cost |
 |---|---|---|
-| GPT-6 Astra | proxy | ~$15,159 |
-| Claude Fable 5.1 | proxy | ~$15,159 |
-| Claude Opus 5.5 | proxy | ~$6,064 |
-| Claude Sonnet 5.5 | proxy | ~$3,032 |
-| Gemini 3.8 Flash | proxy | ~$1,258 |
+| GPT-6 Astra | proxy | ~$15,193 |
+| Claude Fable 5.1 | proxy | ~$15,193 |
+| Claude Opus 5.5 | proxy | ~$6,077 |
+| Claude Sonnet 5.5 | proxy | ~$3,039 |
+| Gemini 3.8 Flash | proxy | ~$1,261 |
 | GLM-5.3 Flash (OpenRouter) | proxy | ~$59 |
+| The proxy's own ledger rates | proxy | ~$3,798 |
 | Ollama Cloud at Mistral Large 4 rates | cloud | ~$707 |
 | Local rig at GLM-5.3-Flash rates | local | ~$11 |
 
@@ -323,13 +324,19 @@ Caveats that keep this honest:
   interactive quotas, not agent-scale volumes; running the table above through
   a chat plan would exhaust any fair-use tier in days. Subscriptions and
   metered APIs are different products (see below).
-- **The served proxy and Ollama Cloud costs are prepaid or institution-level**
-  and not visible to the lead tester; the reroute rows are the only apples-to-
-  apples comparison available.
+- **The proxy and Ollama Cloud costs are prepaid or institution-level.** No
+  per-token bill reaches the lead tester, but the proxy's own ledger is
+  visible and books a flat $2.50 per million prompt tokens and $12.50 per
+  million completion tokens on every model: about $2,806 for its two GLM
+  deployments over 2026-10-13 to 11-09, against about $48 at the OpenRouter
+  list prices above. Its prompt meter sits within a few percent of opencode's
+  log (the big-tier meter misses two early days almost entirely) and its
+  completion meter runs about a fifth higher, because interrupted generations
+  still bill the tokens they generated.
 - **The local share is small by spend, not by traffic**: llama.cpp-style
   servers log the cache misses as input and the reused prefix separately, so
   a raw input count would show the rig at 18M; with cache reads counted the
-  rig served about 261M prompt tokens against the proxy's 1,445M, all of it
+  rig served about 261M prompt tokens against the proxy's 1,448M, all of it
   re-read from VRAM for free. Rerouted at Flash list prices that volume would
   cost about $11; on the rig it cost electricity. The local sessions were
   also the longest and most agentic (marathons like the 8h49m BEAST2
