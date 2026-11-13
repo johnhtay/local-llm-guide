@@ -2,9 +2,9 @@
   "cutoff_utc": "2026-11-10T20:28:00+00:00",
   "source_quick_check": "ok",
   "source_script_sha256": {
-    "agg_task_types.py": "76a7c51d9cc4cb13e481fa66ec232953b3037b5987aa4477827fbe8521a960c7",
-    "mine_errors.py": "e1e8599aac1578e1a46e82bd55be9a6d08c59e10e5633e0b7c47c088da44f0dc",
-    "mine_runtimes.py": "c28334d410045ce98c6181f8bdcc07313b4e835c3cc6c5ecbf64e95f55cfd9e4"
+    "agg_task_types.py": "61fe36ec1772452d52dc77bb907c9964a7d4e69dac62e4dae4901e68b5b26b2d",
+    "mine_errors.py": "c46da0399ea6970251a32a07b512a388b6ac8425a71c917b2adb4c20eafad732",
+    "mine_runtimes.py": "98329ce62dd8e00c2985c4927a723872d188ac3398848bf370eed2c07d267487"
   },
   "sessions": 368,
   "work_sessions": 290,

@@ -25,6 +25,12 @@ import re
 from datetime import datetime
 
 DB = os.path.expanduser("~/.local/share/opencode/opencode.db")
+
+# Snapshot cutoff: sessions created after this instant are excluded, and
+# messages and tool events completed after it are not counted. Matches the
+# cutoff_utc in data/deidentified/manifest.json, so the chapter tables and the
+# published data files always describe the same snapshot.
+SNAPSHOT_CUTOFF_MS = 1794342480000  # 2026-11-10T20:28:00Z
 MIN_WALL_MS = 120_000
 MIN_ACTIVE_MS = 30_000
 
@@ -103,25 +109,29 @@ def main():
     con = sqlite3.connect(DB)
     rows = con.execute(
         "SELECT id,title,model,time_created,time_updated,tokens_output,tokens_reasoning"
-        " FROM session_v2 ORDER BY time_created"
+        " FROM session_v2 WHERE time_created < ? ORDER BY time_created",
+        (SNAPSHOT_CUTOFF_MS,)
     ).fetchall()
     agg = {}
     n_total = 0
     for sid, title, model, tc, tu, tout, treason in rows:
-        wall = tu - tc
+        wall = min(tu, SNAPSHOT_CUTOFF_MS) - tc
         if wall < MIN_WALL_MS:
             continue
         if is_excluded(title):
             continue
         gen = tools = 0
         first_user = ""
-        for typ, data in con.execute(
-                "SELECT type,data FROM session_message WHERE session_id=? ORDER BY seq", (sid,)):
-            if typ == "user" and not first_user:
-                try:
-                    first_user = (json.loads(data).get("text") or "")[:2000]
-                except Exception:
-                    pass
+        for typ, data, msg_created in con.execute(
+                "SELECT type,data,time_created FROM session_message WHERE session_id=?"
+                " ORDER BY seq", (sid,)):
+            if typ == "user":
+                if msg_created < SNAPSHOT_CUTOFF_MS and not first_user:
+                    try:
+                        first_user = (json.loads(data).get("text") or "")[:2000]
+                    except Exception:
+                        pass
+                continue
             if typ != "assistant":
                 continue
             try:
@@ -129,14 +139,18 @@ def main():
             except Exception:
                 continue
             t = d.get("time") or {}
-            if t.get("completed") is not None:
-                gen += t["completed"] - (t.get("created") or t["completed"])
+            completed = t.get("completed")
+            if completed is not None and completed <= SNAPSHOT_CUTOFF_MS:
+                gen += completed - (t.get("created") or completed)
             for c in d.get("content") or []:
                 if c.get("type") != "tool":
                     continue
                 ct = c.get("time") or {}
-                if ct.get("completed") is not None:
-                    tools += ct["completed"] - (ct.get("ran") or ct.get("created") or ct["completed"])
+                comp = ct.get("completed")
+                if comp is None or comp > SNAPSHOT_CUTOFF_MS \
+                        or (ct.get("created") or msg_created) >= SNAPSHOT_CUTOFF_MS:
+                    continue
+                tools += comp - (ct.get("ran") or ct.get("created") or msg_created or comp)
         if gen + tools < MIN_ACTIVE_MS:
             continue
         if is_warming_artifact(title, (tout or 0) + (treason or 0)):

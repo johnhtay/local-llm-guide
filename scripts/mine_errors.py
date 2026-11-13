@@ -31,7 +31,8 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from agg_task_types import CATS, OTHER, classify, MIN_WALL_MS, MIN_ACTIVE_MS, is_excluded
+from agg_task_types import (CATS, OTHER, classify, MIN_WALL_MS, MIN_ACTIVE_MS,
+                            is_excluded, SNAPSHOT_CUTOFF_MS)
 
 DB = os.path.expanduser("~/.local/share/opencode/opencode.db")
 
@@ -86,12 +87,15 @@ FILE_TOOLS = {"edit", "read", "write", "multiedit", "patch", "glob", "list"}
 def timeline_of(con, sid):
     """Chronological [(kind, name_ref_or_None, user_text_or_None)] for one
     session; tool parts appear as their failure kind or 'ok' (a successful
-    call)."""
+    call). Events after the snapshot cutoff are excluded, matching the
+    published data files."""
     out = []
-    for typ, data in con.execute(
-            "SELECT type,data FROM session_message WHERE session_id=? ORDER BY seq",
-            (sid,)):
+    for typ, data, msg_created in con.execute(
+            "SELECT type,data,time_created FROM session_message"
+            " WHERE session_id=? ORDER BY seq", (sid,)):
         if typ == "user":
+            if msg_created >= SNAPSHOT_CUTOFF_MS:
+                continue
             try:
                 out.append(("user", None, (json.loads(data).get("text") or "").strip()))
             except Exception:
@@ -103,6 +107,11 @@ def timeline_of(con, sid):
                 continue
             for c in d.get("content") or []:
                 if not (isinstance(c, dict) and c.get("type") == "tool"):
+                    continue
+                ct = c.get("time") or {}
+                comp = ct.get("completed")
+                if comp is None or comp > SNAPSHOT_CUTOFF_MS \
+                        or (ct.get("created") or msg_created) >= SNAPSHOT_CUTOFF_MS:
                     continue
                 k, ref = kind_of(c.get("name") or "?", c.get("state") or {})
                 if k:
@@ -144,24 +153,25 @@ def cat_of(con, sid, title):
 def main():
     con = sqlite3.connect(DB)
     rows = con.execute(
-        "SELECT id,title,time_created FROM session_v2 ORDER BY time_created").fetchall()
+        "SELECT id,title,time_created,time_updated FROM session_v2"
+        " WHERE time_created < ? ORDER BY time_created",
+        (SNAPSHOT_CUTOFF_MS,)).fetchall()
     agg = {h: {"sessions": 0, "err_sessions": 0, "kinds": {}, "retried": {},
                "manual": 0} for h in HALVES}
-    for sid, title, tc in rows:
+    for sid, title, tc, tu in rows:
         cat = cat_of(con, sid, title)
         if cat not in agg:
             continue
         timeline = timeline_of(con, sid)
         # same filters as agg_task_types: wall >= 2 min, active (think+tools) >= 30 s
-        wall = con.execute("SELECT time_updated FROM session_v2 WHERE id=?",
-                           (sid,)).fetchone()[0] - tc
+        wall = min(tu, SNAPSHOT_CUTOFF_MS) - tc
         if wall < MIN_WALL_MS:
             continue
         if is_excluded(title):
             continue
         active = 0
-        for typ, data in con.execute(
-                "SELECT type,data FROM session_message WHERE session_id=?", (sid,)):
+        for typ, data, msg_created in con.execute(
+                "SELECT type,data,time_created FROM session_message WHERE session_id=?", (sid,)):
             if typ != "assistant":
                 continue
             try:
@@ -169,13 +179,17 @@ def main():
             except Exception:
                 continue
             t = d.get("time") or {}
-            if t.get("completed") is not None:
-                active += t["completed"] - (t.get("created") or t["completed"])
+            completed = t.get("completed")
+            if completed is not None and completed <= SNAPSHOT_CUTOFF_MS:
+                active += completed - (t.get("created") or completed)
             for c in d.get("content") or []:
                 if isinstance(c, dict) and c.get("type") == "tool":
                     ct = c.get("time") or {}
-                    if ct.get("completed") is not None:
-                        active += ct["completed"] - (ct.get("ran") or ct.get("created") or ct["completed"])
+                    comp = ct.get("completed")
+                    if comp is None or comp > SNAPSHOT_CUTOFF_MS \
+                            or (ct.get("created") or msg_created) >= SNAPSHOT_CUTOFF_MS:
+                        continue
+                    active += comp - (ct.get("ran") or ct.get("created") or msg_created or comp)
         if active < MIN_ACTIVE_MS:
             continue
         agg[cat]["sessions"] += 1

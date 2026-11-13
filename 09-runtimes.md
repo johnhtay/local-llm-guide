@@ -231,8 +231,9 @@ holds up anyway.
 
 | Date | Engine | Task | Prompts | Tool calls | Think | Tools | Tool share | Active | Span med | Gen tok | Reason tok | Out tok | ~tok/s |
 |-----------|------------------|-----------------------|-----------------|--------|----------------------|----------------------|-----------|----------------------|------------|--------------------|------------------|------------------|-------------|
-| 11-10 | medium (served) | Ch09 runtimes ch10 pitfalls numbers | 2 | 84 | 8m48s | 0m53s | 10% | 9m42s | 4.3s | 90,339 | 78,051 (86%) | 12,288 (14%) | 171 |
+| 11-08 | medium (served) | Occamy prefill and decode rates | 13 | 68 | 16m04s | 0m01s | 0% | 16m05s | 3.6s | 55,488 | 49,453 (89%) | 6,035 (11%) | 58 |
 | 11-10 | big (served) | PLOS local LLM guidelines | 1 | 10 | 3m12s | 0m04s | 3% | 3m17s | 12.3s | 6,764 | 6,702 (99%) | 62 (1%) | 35 |
+| 11-10 | medium (served) | Ch09 runtimes ch10 pitfalls numbers | 2 | 84 | 8m48s | 0m53s | 10% | 9m42s | 4.3s | 90,339 | 78,051 (86%) | 12,288 (14%) | 171 |
 | 11-10 | big (served) | Skills audit for correctness | 2 | 111 | 3h21m16s | 0m13s | 0% | 3h21m30s | 28.5s | 74,936 | 64,160 (86%) | 10,776 (14%) | 6 |
 | 11-10 | medium (served) | llama.cpp benchmark run log history | 6 | 43 | 9m03s | 0m04s | 1% | 9m07s | 5.5s | 55,621 | 51,624 (93%) | 3,997 (7%) | 102 |
 | 11-10 | medium (served) | Agent work PPTX refinement | 2 | 50 | 18m18s | 1m31s | 8% | 19m49s | 6.4s | 46,932 | 36,618 (78%) | 10,314 (22%) | 43 |
@@ -244,8 +245,7 @@ holds up anyway.
 | 11-10 | medium (served) | Virus identification from Newick tree | 1 | 30 | 13m57s | 0m02s | 0% | 13m59s | 5.8s | 46,948 | 40,043 (85%) | 6,905 (15%) | 56 |
 | 11-10 | medium (served) | Beast2 Remaster install verification | 2 | 42 | 3m36s | 0m34s | 16% | 4m11s | 2.9s | 8,644 | 6,986 (81%) | 1,658 (19%) | 40 |
 | 11-09 | medium (served) | LLM phylogenetic dating benchmark | 2 | 13 | 3m03s | 0m00s | 0% | 3m04s | 4.8s | 25,251 | 21,826 (86%) | 3,425 (14%) | 137 |
-| 11-10 | big (served) | Nature Comms Perspective desk rejection | 1 | 17 | 5m20s | 0m11s | 4% | 5m32s | 23.0s | 16,277 | 16,277 (100%) | 0 (0%) | 51 |
-| 11-08 | medium (served) | Occamy prefill and decode rates | 13 | 68 | 16m04s | 0m01s | 0% | 16m05s | 3.6s | 55,488 | 49,453 (89%) | 6,035 (11%) | 58 |
+| 11-10 | big (served) | Journal venue evaluation | 1 | 17 | 5m20s | 0m11s | 4% | 5m32s | 23.0s | 16,277 | 16,277 (100%) | 0 (0%) | 51 |
 | 11-08 | medium (served) | Axion Occamy Sage metrics update | 2 | 225 | 40m11s | 2m15s | 6% | 42m26s | 5.2s | 149,816 | 116,432 (78%) | 33,384 (22%) | 62 |
 | 11-08 | medium (served) | Axion, Occamy, and Sage comparison | 6 | 93 | 33m59s | 0m55s | 3% | 34m55s | 32.0s | 121,885 | 104,282 (86%) | 17,603 (14%) | 60 |
 | 11-06 | medium (served) | GPU0 low clock in Occamy | 31 | 184 | 2h21m28s | 1h42m06s | 72% | 4h03m35s | 5.5s | 290,757 | 274,554 (94%) | 16,203 (6%) | 34 |
@@ -260,7 +260,7 @@ holds up anyway.
 | 11-05 | medium (served) | OpenCode subagent with dual Groot servers | 2 | 21 | 2m19s | 0m24s | 17% | 2m43s | 9.9s | 20,210 | 20,198 (100%) | 12 (0%) | 145 |
 | 11-05 | medium (served) | PLOS Comp Biol paper AI origin | 2 | 3 | 0m53s | 0m01s | 4% | 0m55s | 4.1s | 9,792 | 8,983 (92%) | 809 (8%) | 184 |
 | 11-05 | big (served) | Free journal for sole author | 1 | 14 | 6m35s | 1m30s | 23% | 8m06s | 49.5s | 20,410 | 20,410 (100%) | 0 (0%) | 52 |
-| <mark>11-04</mark> | <mark>medium (served)</mark> | <mark>Local LLM setup tutorial (for this very Gitlab repo :) )</mark> | <mark>72</mark> | <mark>1888</mark> | <mark>4h59m54s</mark> | <mark>2h11m38s</mark> | <mark>44%</mark> | <mark>7h11m32s</mark> | <mark>3.1s</mark> | <mark>1,665,957</mark> | <mark>1,328,847 (80%)</mark> | <mark>337,110 (20%)</mark> | <mark>93</mark> |
+| <mark>11-04</mark> | <mark>medium (served)</mark> | <mark>Local LLM setup tutorial (for this very repo :) )</mark> | <mark>72</mark> | <mark>1888</mark> | <mark>4h59m54s</mark> | <mark>2h11m38s</mark> | <mark>44%</mark> | <mark>7h11m32s</mark> | <mark>3.1s</mark> | <mark>1,665,957</mark> | <mark>1,328,847 (80%)</mark> | <mark>337,110 (20%)</mark> | <mark>93</mark> |
 | 11-05 | big (served) | MiniPlus vs Qwen 3.8 9B | 1 | 23 | 1h12m10s | 0m03s | 0% | 1h12m14s | 4m26s | 77,629 | 73,696 (95%) | 3,933 (5%) | 18 |
 | 11-05 | medium (served) | Repo publishability and sensitive data | 1 | 21 | 2m10s | 0m02s | 2% | 2m12s | 16.6s | 15,663 | 15,663 (100%) | 0 (0%) | 120 |
 | <mark>11-05</mark> | <mark>big (served)</mark> | <mark>Writing voice and phrasing corrections</mark> | <mark>3</mark> | <mark>207</mark> | <mark>1h25m40s</mark> | <mark>0m43s</mark> | <mark>1%</mark> | <mark>1h26m24s</mark> | <mark>17.3s</mark> | <mark>165,644</mark> | <mark>152,385 (92%)</mark> | <mark>13,259 (8%)</mark> | <mark>32</mark> |
@@ -377,7 +377,7 @@ holds up anyway.
 | 09-17 | medium (served) | New session - 2026-09-17T15:15:21.257Z | 5 | 35 | 5m58s | 2m14s | 37% | 8m12s | n/a | 12,668 | 9,789 (77%) | 2,879 (23%) | 35 |
 | 09-17 | medium (served) | **Short answer: yes for tokens, roughly a wash for reasoning - unless you step up the quant.** | 3 | 7 | 1m05s | 0m01s | 3% | 1m07s | n/a | 3,932 | 2,949 (75%) | 983 (25%) | 60 |
 | 09-16 | medium (served) | Largest firms in open-weight AI letter | 2 | 5 | 1m18s | 0m03s | 4% | 1m21s | n/a | 5,566 | 5,112 (92%) | 454 (8%) | 71 |
-| 09-15 | medium (served) | Script that copies to Maestro work server | 4 | 17 | 3m50s | 2m16s | 59% | 6m06s | n/a | 4,891 | 3,269 (67%) | 1,622 (33%) | 21 |
+| 09-15 | medium (served) | Copy scripts to work server | 4 | 17 | 3m50s | 2m16s | 59% | 6m06s | n/a | 4,891 | 3,269 (67%) | 1,622 (33%) | 21 |
 | 09-15 | medium (served) | Qwen3.8 27B config tuning & context limits | 2 | 33 | 15m56s | 9m57s | 63% | 25m53s | n/a | 23,067 | 18,002 (78%) | 5,065 (22%) | 24 |
 | 09-15 | medium (served) | Paper summary and model parameters glossary | 2 | 8 | 1m41s | 0m02s | 3% | 1m44s | n/a | 6,300 | 3,258 (52%) | 3,042 (48%) | 62 |
 | 09-14 | medium (served) | Qwen 3.8 9B context length diagnosis | 7 | 57 | 23m51s | 14m35s | 61% | 38m26s | n/a | 26,554 | 22,612 (85%) | 3,942 (15%) | 19 |
@@ -392,18 +392,18 @@ holds up anyway.
 | 09-11 | medium (served) | Qwen3.8-27B n_gpu_layers=32 memory abort | 3 | 11 | 5m36s | 4m09s | 74% | 9m46s | n/a | 5,919 | 5,760 (97%) | 159 (3%) | 18 |
 | 09-11 | medium (served) | Reviewing realPrior XMLs for issues | 2 | 140 | 1h00m51s | 2m26s | 4% | 1h03m18s | n/a | 269,919 | 0 (0%) | 269,919 (100%) | 74 |
 | 09-11 | medium (served) | Replace Qwen3.6-35B GGUF in HF cache | 4 | 71 | 1h46m25s | 1h28m48s | 83% | 3h15m13s | n/a | 39,901 | 31,801 (80%) | 8,100 (20%) | 6 |
-| 09-11 | medium (served) | Canary presence check | 1 | 1 | 1h06m59s | 1h05m47s | 98% | 2h12m47s | n/a | 343 | 343 (100%) | 0 (0%) | 0 |
-| 09-11 | medium (served) | Canary search in project | 1 | 9 | 3m28s | 0m04s | 2% | 3m33s | n/a | 2,133 | 1,799 (84%) | 334 (16%) | 10 |
+| 09-11 | medium (served) | Tooling experiment | 1 | 1 | 1h06m59s | 1h05m47s | 98% | 2h12m47s | n/a | 343 | 343 (100%) | 0 (0%) | 0 |
+| 09-11 | medium (served) | Tooling experiment | 1 | 9 | 3m28s | 0m04s | 2% | 3m33s | n/a | 2,133 | 1,799 (84%) | 334 (16%) | 10 |
 | 09-10 | medium (served) | Fixing npm install failure | 16 | 484 | 3h28m04s | 2h20m21s | 67% | 5h48m26s | n/a | 228,607 | 170,952 (75%) | 57,655 (25%) | 18 |
 | 09-10 | glm-5.3 (ollama-cloud) | Splitting figure 4 to rework figures 1, 2, 3, 5 | 2 | 92 | 2h15m37s | 1h44m17s | 77% | 3h59m55s | n/a | 58,429 | 0 (0%) | 58,429 (100%) | 7 |
 | 09-10 | medium (served) | Checking phyloplate for embedded canaries | 4 | 51 | 1h42m59s | 1h49m17s | 106% | 3h32m16s | n/a | 63,528 | 58,917 (93%) | 4,611 (7%) | 10 |
-| 09-10 | glm-5.3 (ollama-cloud) | Canary project dev continuation | 7 | 102 | 1h03m13s | 41m24s | 65% | 1h44m37s | n/a | 161,904 | 0 (0%) | 161,904 (100%) | 43 |
+| 09-10 | glm-5.3 (ollama-cloud) | Tooling experiment | 7 | 102 | 1h03m13s | 41m24s | 65% | 1h44m37s | n/a | 161,904 | 0 (0%) | 161,904 (100%) | 43 |
 | 09-10 | minimax-m3 (ollama-cloud) | Evaluating recent AI developments | 6 | 11 | 2m22s | 0m03s | 3% | 2m25s | n/a | 9,734 | 0 (0%) | 9,734 (100%) | 68 |
 | 09-10 | minimax-m3 (ollama-cloud) | PDF review and summarization approach | 2 | 19 | 3m01s | 1m09s | 38% | 4m11s | n/a | 6,292 | 0 (0%) | 6,292 (100%) | 35 |
-| 09-10 | medium (served) | Testing canary in duplicate repo | 4 | 110 | 1h34m34s | 38m40s | 41% | 2h13m14s | n/a | 89,356 | 84,631 (95%) | 4,725 (5%) | 16 |
-| 09-10 | medium (served) | Frozen session in canary_phyloplate | 2 | 30 | 2m51s | 0m59s | 35% | 3m51s | n/a | 7,468 | 7,358 (99%) | 110 (1%) | 44 |
+| 09-10 | medium (served) | Tooling experiment | 4 | 110 | 1h34m34s | 38m40s | 41% | 2h13m14s | n/a | 89,356 | 84,631 (95%) | 4,725 (5%) | 16 |
+| 09-10 | medium (served) | Tooling experiment | 2 | 30 | 2m51s | 0m59s | 35% | 3m51s | n/a | 7,468 | 7,358 (99%) | 110 (1%) | 44 |
 | 09-09 | medium (served) | Catching up on repo progress | 7 | 93 | 28m18s | 10m57s | 39% | 39m15s | n/a | 74,776 | 60,618 (81%) | 14,158 (19%) | 44 |
-| 09-10 | medium (served) | Noise to deter code-stealing models | 5 | 57 | 32m36s | 22m19s | 68% | 54m55s | n/a | 61,535 | 34,026 (55%) | 27,509 (45%) | 31 |
+| 09-10 | medium (served) | Tooling experiment | 5 | 57 | 32m36s | 22m19s | 68% | 54m55s | n/a | 61,535 | 34,026 (55%) | 27,509 (45%) | 31 |
 | 09-09 | medium (served) | Using opencode-phylo-canvas | 2 | 23 | 3m27s | 2m27s | 71% | 5m54s | n/a | 3,439 | 2,161 (63%) | 1,278 (37%) | 17 |
 | 09-09 | medium (served) | opencode-canvas review & TUI ideas | 8 | 293 | 1h00m00s | 12m04s | 20% | 1h12m04s | n/a | 153,198 | 59,513 (39%) | 93,685 (61%) | 43 |
 | 09-09 | medium (served) | Comparing opencode memory plugins | 4 | 6 | 0m43s | 0m04s | 10% | 0m48s | n/a | 2,740 | 2,588 (94%) | 152 (6%) | 62 |
@@ -743,7 +743,7 @@ above.
 | 10-23 | ornith1.5-35b (local) | Milankovitch cycles visualization | 1 | 8 | 6m55s | 0m01s | 0% | 6m56s | 11.0s | 15,740 | 38 |
 | 10-22 | ornith1.5-35b (local) | 3D galloping horse animation | 3 | 63 | 25m08s | 2m43s | 11% | 27m52s | 12.7s | 51,487 | 34 |
 | 10-22 | nemotron-3.5-bolt-74b (local) | 3D galloping horse animation | 2 | 23 | 23m11s | 0m01s | 0% | 23m12s | 27.4s | 51,218 | 37 |
-| 09-17 | qwen3.8-9b (local) | **Asus TUF A15 (FA507FA-FU439) - 90Y0654Z01 - QWERTY, in stock at LDLC** | 1 | 17 | 2m44s | 0m14s | 9% | 2m59s | n/a | 1,937 | 12 |
+| 09-17 | qwen3.8-9b (local) | Laptop availability check | 1 | 17 | 2m44s | 0m14s | 9% | 2m59s | n/a | 1,937 | 12 |
 
 Games dominate the local home log, and most of the 10-28 to 11-08 rows on
 sage-a1.5, flint, tiel-coder-35b, occamy-1.0 and ornith-1.5-35b are one project: a browser shooter
@@ -772,31 +772,31 @@ and an open-ended creative build, before the fleet dropped them.
 |-----------|------------------|--------------------------|-----------------|--------|----------------------|----------------------|-----------|----------------------|------------|--------------------|------------------|------------------|-------------|
 | 11-03 | mistral-large-4 (ollama-cloud) | Sage A1.5 horse prompt | 4 | 20 | 9m56s | 0m01s | 0% | 9m57s | 8.4s | 35,340 | 0 (0%) | 35,340 (100%) | 59 |
 | 10-29 | minimax-m3.1-flash (ollama-cloud) | Sage 1.5 3D weapon models | 5 | 229 | 1h16m00s | 7m56s | 10% | 1h23m57s | 3.9s | 380,965 | 0 (0%) | 380,965 (100%) | 84 |
-| 10-29 | minimax-m3.1-flash (ollama-cloud) | Vulcan Energy quarterly and Ludwig valuation | 2 | 57 | 12m48s | 2m33s | 20% | 15m22s | 6.8s | 86,911 | 0 (0%) | 86,911 (100%) | 113 |
-| 10-29 | glm-5.3 (ollama-cloud) | Vulcan Energy share analysis | 2 | 31 | 9m53s | 0m36s | 6% | 10m30s | 4.4s | 49,302 | 0 (0%) | 49,302 (100%) | 83 |
-| 10-29 | deepseek-v4.1-flash-free (free tier) | Vulcan Energy quarterly share outlook | 2 | 21 | 6m39s | 0m16s | 4% | 6m55s | 3.6s | 34,006 | 27,316 (80%) | 6,690 (20%) | 85 |
-| 10-29 | kimi-k3 (ollama-cloud) | Vulcan Energy share price analysis | 2 | 13 | 2m26s | 0m03s | 2% | 2m29s | 3.1s | 13,007 | 0 (0%) | 13,007 (100%) | 89 |
-| 10-29 | muse-spark-open (ollama-cloud) | Vulcan Energy share analysis | 2 | 12 | 2m33s | 0m13s | 9% | 2m47s | 3.9s | 9,053 | 0 (0%) | 9,053 (100%) | 59 |
-| 10-29 | mistral-large-4 (ollama-cloud) | Vulcan Energy quarterly share outlook | 2 | 20 | 2m04s | 0m15s | 13% | 2m20s | 3.9s | 7,579 | 0 (0%) | 7,579 (100%) | 61 |
-| 10-29 | minimax-m3.1-flash (ollama-cloud) | Research VUL valuation Ludwig inclusion | 1 | 85 | 7m29s | 2m17s | 30% | 9m47s | 4.5s | 37,071 | 0 (0%) | 37,071 (100%) | 82 |
+| 10-29 | minimax-m3.1-flash (ollama-cloud) | Investment research | 2 | 57 | 12m48s | 2m33s | 20% | 15m22s | 6.8s | 86,911 | 0 (0%) | 86,911 (100%) | 113 |
+| 10-29 | glm-5.3 (ollama-cloud) | Investment research | 2 | 31 | 9m53s | 0m36s | 6% | 10m30s | 4.4s | 49,302 | 0 (0%) | 49,302 (100%) | 83 |
+| 10-29 | deepseek-v4.1-flash-free (free tier) | Investment research | 2 | 21 | 6m39s | 0m16s | 4% | 6m55s | 3.6s | 34,006 | 27,316 (80%) | 6,690 (20%) | 85 |
+| 10-29 | kimi-k3 (ollama-cloud) | Investment research | 2 | 13 | 2m26s | 0m03s | 2% | 2m29s | 3.1s | 13,007 | 0 (0%) | 13,007 (100%) | 89 |
+| 10-29 | muse-spark-open (ollama-cloud) | Investment research | 2 | 12 | 2m33s | 0m13s | 9% | 2m47s | 3.9s | 9,053 | 0 (0%) | 9,053 (100%) | 59 |
+| 10-29 | mistral-large-4 (ollama-cloud) | Investment research | 2 | 20 | 2m04s | 0m15s | 13% | 2m20s | 3.9s | 7,579 | 0 (0%) | 7,579 (100%) | 61 |
+| 10-29 | minimax-m3.1-flash (ollama-cloud) | Investment research | 1 | 85 | 7m29s | 2m17s | 30% | 9m47s | 4.5s | 37,071 | 0 (0%) | 37,071 (100%) | 82 |
 | 10-29 | minimax-m3.1-flash (ollama-cloud) | Sage A1.5 rendering and performance bugs | 1 | 13 | 3m52s | 1m55s | 50% | 5m47s | 3.1s | 25,175 | 0 (0%) | 25,175 (100%) | 108 |
 | 10-29 | deepseek-v4.1-flash-free (free tier) | Sage 1.5 horse animation prompt | 5 | 20 | 4m57s | 0m13s | 4% | 5m11s | 4.9s | 36,519 | 21,648 (59%) | 14,871 (41%) | 123 |
 | 10-25 | mistral-large-4 (ollama-cloud) | FPS game LLM prompt | 2 | 0 | 1m47s | 0m00s | 0% | 1m47s | 53.9s | 8,968 | 0 (0%) | 8,968 (100%) | 83 |
 | 10-25 | mistral-large-4 (ollama-cloud) | Build an FPS game | 3 | 44 | 8m58s | 0m02s | 1% | 9m01s | 4.7s | 44,665 | 0 (0%) | 44,665 (100%) | 83 |
-| 10-21 | minimax-m3.1-flash (ollama-cloud) | Investment growth comparison webpage | 2 | 227 | 1h10m39s | 36m32s | 52% | 1h47m12s | n/a | 178,137 | 0 (0%) | 178,137 (100%) | 42 |
-| 10-20 | minimax-m3.1-flash (ollama-cloud) | EU econ-finance crash course (AU→EU) | 3 | 159 | 3h15m35s | 2h35m00s | 79% | 5h50m36s | n/a | 225,106 | 0 (0%) | 225,106 (100%) | 19 |
-| 10-20 | minimax-m3.1-flash (ollama-cloud) | Reconcile BdF household asset data (@general subagent) | 1 | 36 | 5m35s | 0m20s | 6% | 5m55s | n/a | 32,295 | 0 (0%) | 32,295 (100%) | 96 |
-| 10-20 | minimax-m3.1-flash (ollama-cloud) | Australian household asset allocation (@general subagent) | 1 | 130 | 15m54s | 1m45s | 11% | 17m40s | n/a | 66,818 | 0 (0%) | 66,818 (100%) | 70 |
+| 10-21 | minimax-m3.1-flash (ollama-cloud) | Investment research | 2 | 227 | 1h10m39s | 36m32s | 52% | 1h47m12s | n/a | 178,137 | 0 (0%) | 178,137 (100%) | 42 |
+| 10-20 | minimax-m3.1-flash (ollama-cloud) | Economics crash course | 3 | 159 | 3h15m35s | 2h35m00s | 79% | 5h50m36s | n/a | 225,106 | 0 (0%) | 225,106 (100%) | 19 |
+| 10-20 | minimax-m3.1-flash (ollama-cloud) | Household asset reconciliation | 1 | 36 | 5m35s | 0m20s | 6% | 5m55s | n/a | 32,295 | 0 (0%) | 32,295 (100%) | 96 |
+| 10-20 | minimax-m3.1-flash (ollama-cloud) | Household budget planning | 1 | 130 | 15m54s | 1m45s | 11% | 17m40s | n/a | 66,818 | 0 (0%) | 66,818 (100%) | 70 |
 | 10-20 | minimax-m3.1-flash (ollama-cloud) | Final data batch for vignette (@general subagent) | 1 | 373 | 55m13s | 5m29s | 10% | 1h00m43s | n/a | 137,317 | 0 (0%) | 137,317 (100%) | 41 |
-| 10-20 | minimax-m3.1-flash (ollama-cloud) | Research EU/FR investment law (@general subagent) | 1 | 171 | 25m24s | 1m51s | 7% | 27m16s | n/a | 79,664 | 0 (0%) | 79,664 (100%) | 52 |
-| 10-20 | minimax-m3.1-flash (ollama-cloud) | Research French fiscal institutions (@general subagent) | 1 | 309 | 45m50s | 3m53s | 8% | 49m43s | n/a | 84,585 | 0 (0%) | 84,585 (100%) | 31 |
-| 10-20 | minimax-m3.1-flash (ollama-cloud) | Extract market data from saved output (@explore subagent) | 1 | 41 | 3m13s | 0m01s | 1% | 3m15s | n/a | 16,664 | 0 (0%) | 16,664 (100%) | 86 |
+| 10-20 | minimax-m3.1-flash (ollama-cloud) | Investment research | 1 | 171 | 25m24s | 1m51s | 7% | 27m16s | n/a | 79,664 | 0 (0%) | 79,664 (100%) | 52 |
+| 10-20 | minimax-m3.1-flash (ollama-cloud) | Public-finance research | 1 | 309 | 45m50s | 3m53s | 8% | 49m43s | n/a | 84,585 | 0 (0%) | 84,585 (100%) | 31 |
+| 10-20 | minimax-m3.1-flash (ollama-cloud) | Data extraction from saved output | 1 | 41 | 3m13s | 0m01s | 1% | 3m15s | n/a | 16,664 | 0 (0%) | 16,664 (100%) | 86 |
 | 10-08 | mistral-large-4 (ollama-cloud) | New Constructs Anthropic IPO report evaluation | 2 | 1 | 4m52s | 0m00s | 0% | 4m52s | n/a | 5,233 | 0 (0%) | 5,233 (100%) | 18 |
 | 10-01 | medium (served) | Roll back Windows 11 26H2 update | 2 | 19 | 3m06s | 0m36s | 20% | 3m43s | n/a | 23,070 | 22,741 (99%) | 329 (1%) | 123 |
 | 10-01 | medium (served) | Windows 11 26H2 rollback option missing | 1 | 22 | 2m20s | 0m20s | 15% | 2m41s | n/a | 17,659 | 16,870 (96%) | 789 (4%) | 126 |
 | 09-23 | big (served) | Milankovitch cycles interactive visualization | 1 | 3 | 11m07s | 0m00s | 0% | 11m08s | n/a | 16,546 | 16,218 (98%) | 328 (2%) | 25 |
 | 09-23 | medium (served) | Milankovitch cycles visualization app | 2 | 6 | 5m02s | 0m00s | 0% | 5m02s | n/a | 49,924 | 49,474 (99%) | 450 (1%) | 165 |
-| 09-15 | medium (served) | ALDImobile SIM not working in Poco F9 Ultra | 29 | 14 | 11m00s | 0m10s | 2% | 11m10s | n/a | 55,011 | 51,587 (94%) | 3,424 (6%) | 83 |
+| 09-15 | medium (served) | Mobile SIM troubleshooting | 29 | 14 | 11m00s | 0m10s | 2% | 11m10s | n/a | 55,011 | 51,587 (94%) | 3,424 (6%) | 83 |
 | 09-10 | medium (served) | Map settings + menu patterns (@explore subagent) | 1 | 120 | 7m41s | 0m02s | 0% | 7m43s | n/a | 14,373 | 8,608 (60%) | 5,765 (40%) | 31 |
 | 09-10 | medium (served) | Resume review (third-party CV) | 3 | 32 | 6m48s | 0m46s | 11% | 7m35s | n/a | 32,038 | 28,261 (88%) | 3,777 (12%) | 78 |
 | 09-03 | kimi-k3 (ollama-cloud) | Dog and cat breeds website planning | 1 | 26 | 6m29s | 0m56s | 15% | 7m26s | n/a | 27,135 | 0 (0%) | 27,135 (100%) | 70 |
@@ -807,11 +807,10 @@ and an open-ended creative build, before the fleet dropped them.
 
 The home cloud log splits three ways. Ollama Cloud carries the big builds, and
 the 10-29 evening is a bake-off in miniature:
-one stock-research question (Vulcan Energy's quarterly numbers and the Ludwig
-stake) put to six engines in seven sessions inside two hours. The minimax-m3.1
+one stock-research question put to six engines in seven sessions inside two
+hours. The minimax-m3.1
 block on 10-20 is personal finance coursework: a seven-session crash course on
-EU fiscal institutions and household asset allocation, much of it run through
-subagents. The lab proxy handles the everyday asks (a SIM that will not connect,
+public finance and household budgeting, much of it run through subagents. The lab proxy handles the everyday asks (a SIM that will not connect,
 a Windows rollback), and two free-tier sessions close the set. The Reason tok
 column separates by host: the lab proxy rows and the two free-tier rows report
 60 to 99% of their generated tokens as reasoning, while the Ollama Cloud rows

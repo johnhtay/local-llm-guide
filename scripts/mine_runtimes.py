@@ -73,7 +73,7 @@ import statistics
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from agg_task_types import is_excluded, is_warming_artifact
+from agg_task_types import is_excluded, is_warming_artifact, SNAPSHOT_CUTOFF_MS
 
 DB = os.path.expanduser("~/.local/share/opencode/opencode.db")
 MIN_WALL_MS = 120_000
@@ -89,7 +89,7 @@ MEDIUM_SWAP = datetime(2026, 10, 29, tzinfo=timezone.utc)
 # itself carries no third-party names, file names or CJK glyphs.
 LABEL_OVERRIDES = [
     ("local llm setup tutorial",
-     "Local LLM setup tutorial (for this very Gitlab repo :) )"),
+     "Local LLM setup tutorial (for this very repo :) )"),
     ("resume review:", "Resume review (third-party CV)"),
     ("cv and github", "CV and GitHub evaluation"),
     ("cv authenticity check", "CV authenticity check"),
@@ -98,6 +98,24 @@ LABEL_OVERRIDES = [
     ("skills file for", "Writing-style skills file"),
     ("academic writing style skill", "Academic writing style skill"),
     ("csv roi calculation", "CSV ROI calculation with salary groups"),
+    # Personal-finance, tooling-experiment and device-detail rows get
+    # topic-neutral display labels. The classifier regexes keep the matching
+    # keywords so the work/home split stays reproducible; only the printed
+    # cell changes.
+    ("investment", "Investment research"),
+    ("vulcan", "Investment research"),
+    ("ludwig", "Investment research"),
+    ("bdf", "Household asset reconciliation"),
+    ("french fiscal", "Public-finance research"),
+    ("household asset", "Household budget planning"),
+    ("econ-finance", "Economics crash course"),
+    ("market data", "Data extraction from saved output"),
+    ("canary", "Tooling experiment"),
+    ("code-stealing", "Tooling experiment"),
+    ("desk rejection", "Journal venue evaluation"),
+    ("maestro work server", "Copy scripts to work server"),
+    ("aldimobile", "Mobile SIM troubleshooting"),
+    ("asus tuf", "Laptop availability check"),
 ]
 
 
@@ -114,7 +132,7 @@ def label_for(task):
 # The highlighted rows are all sessions spent building this guide; the overrides
 # above are plain shortenings and are not highlighted.
 HIGHLIGHT = frozenset({
-    "Local LLM setup tutorial (for this very Gitlab repo :) )",
+    "Local LLM setup tutorial (for this very repo :) )",
     "09 local speed re-evaluation",
     "Writing voice and phrasing corrections",
 })
@@ -197,40 +215,61 @@ def main():
     home_local, home_served = [], []
     ledger = {}  # served work sessions: model -> [gen_tok, reasoning_tok]
     for sid, title, model, tc, tu, tout, treason in rows:
-        if tu - tc < MIN_WALL_MS:
+        if tc >= SNAPSHOT_CUTOFF_MS:
+            continue  # created after the snapshot cutoff
+        if min(tu, SNAPSHOT_CUTOFF_MS) - tc < MIN_WALL_MS:
             continue
+        # Token totals are per-message sums (what the published data files
+        # record), filtered at the snapshot cutoff for sessions still open.
+        open_at_cut = tu > SNAPSHOT_CUTOFF_MS
         gen = tools = 0
         prompts = ntool = 0
         spans = []
         total_msgs = 0
         streamed_msgs = 0
-        for typ, data in con.execute(
-                "SELECT type, data FROM session_message WHERE session_id=?", (sid,)):
+        out_pm = reas_pm = 0
+        for typ, data, msg_created in con.execute(
+                "SELECT type, data, time_created FROM session_message"
+                " WHERE session_id=?", (sid,)):
             if typ == "user":
-                prompts += 1
+                if not open_at_cut or msg_created < SNAPSHOT_CUTOFF_MS:
+                    prompts += 1
                 continue
             if typ != "assistant":
                 continue
-            total_msgs += 1
             try:
                 d = json.loads(data)
             except Exception:
+                if not open_at_cut:
+                    total_msgs += 1  # unparseable message in a finished session still counts
                 continue
             t = d.get("time") or {}
-            if t.get("streamed") is not None and t.get("created") is not None:
-                spans.append(t["streamed"] - t["created"])
-                streamed_msgs += 1
-            if t.get("completed") is not None:
-                gen += t["completed"] - (t.get("created") or t["completed"])
+            completed = t.get("completed")
+            post_cut = open_at_cut and (completed is None or completed > SNAPSHOT_CUTOFF_MS)
+            if not post_cut:
+                total_msgs += 1
+                if t.get("streamed") is not None and t.get("created") is not None:
+                    spans.append(t["streamed"] - t["created"])
+                    streamed_msgs += 1
+            if not post_cut and completed is not None:
+                gen += completed - (t.get("created") or completed)
+                tok = d.get("tokens") or {}
+                out_pm += tok.get("output") or 0
+                reas_pm += tok.get("reasoning") or 0
             for c in d.get("content") or []:
                 if c.get("type") != "tool":
                     continue
-                ntool += 1
                 ct = c.get("time") or {}
-                if ct.get("completed") is not None:
-                    tools += ct["completed"] - (ct.get("ran") or ct.get("created") or ct["completed"])
+                comp = ct.get("completed")
+                if open_at_cut and (comp is None or comp > SNAPSHOT_CUTOFF_MS
+                                    or (ct.get("created") or msg_created) >= SNAPSHOT_CUTOFF_MS):
+                    continue
+                ntool += 1
+                if comp is not None:
+                    tools += comp - (ct.get("ran") or ct.get("created") or msg_created or comp)
         if gen + tools < MIN_ACTIVE_MS:
             continue
+        tout, treason = out_pm, reas_pm
         gen_tok = (tout or 0) + (treason or 0)
         if is_warming_artifact(title, gen_tok):
             continue

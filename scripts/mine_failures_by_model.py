@@ -22,7 +22,8 @@ import sys
 from collections import Counter, defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from agg_task_types import DB, MIN_WALL_MS, is_excluded, is_warming_artifact
+from agg_task_types import (DB, MIN_WALL_MS, MIN_ACTIVE_MS, is_excluded,
+                            is_warming_artifact, SNAPSHOT_CUTOFF_MS)
 from mine_errors import FAIL_KINDS, timeline_of
 
 MIN_MODEL_SESSIONS = 4
@@ -51,11 +52,12 @@ def main():
     con = sqlite3.connect(DB)
     rows = con.execute(
         "SELECT id,title,model,time_created,time_updated,tokens_output,tokens_reasoning"
-        " FROM session_v2 ORDER BY time_created").fetchall()
+        " FROM session_v2 WHERE time_created < ? ORDER BY time_created",
+        (SNAPSHOT_CUTOFF_MS,)).fetchall()
     agg_t = defaultdict(lambda: [0, 0, 0, 0, Counter()])
     agg_m = defaultdict(lambda: [0, 0, 0, 0, Counter()])
     for sid, title, model, tc, tu, tout, treason in rows:
-        if tu - tc < MIN_WALL_MS:
+        if min(tu, SNAPSHOT_CUTOFF_MS) - tc < MIN_WALL_MS:
             continue
         if is_warming_artifact(title, (tout or 0) + (treason or 0)):
             continue
@@ -66,6 +68,32 @@ def main():
             prov, mid = m.get("providerID", "?"), m.get("id", "?")
         except Exception:
             prov, mid = "?", "?"
+        # Same minimum-active filter as the other miners (think + tool time
+        # >= 30 s, frozen at the snapshot cutoff): sessions below it are not
+        # in the published data files either.
+        active = 0
+        for typ, data, msg_created in con.execute(
+                "SELECT type,data,time_created FROM session_message WHERE session_id=?", (sid,)):
+            if typ != "assistant":
+                continue
+            try:
+                d = json.loads(data)
+            except Exception:
+                continue
+            t = d.get("time") or {}
+            completed = t.get("completed")
+            if completed is not None and completed <= SNAPSHOT_CUTOFF_MS:
+                active += completed - (t.get("created") or completed)
+            for c in d.get("content") or []:
+                if isinstance(c, dict) and c.get("type") == "tool":
+                    ct = c.get("time") or {}
+                    comp = ct.get("completed")
+                    if comp is None or comp > SNAPSHOT_CUTOFF_MS \
+                            or (ct.get("created") or msg_created) >= SNAPSHOT_CUTOFF_MS:
+                        continue
+                    active += comp - (ct.get("ran") or ct.get("created") or msg_created or comp)
+        if active < MIN_ACTIVE_MS:
+            continue
         timeline = timeline_of(con, sid)
         calls = sum(1 for k, _, _ in timeline if k != "user")
         fails = [k for k, _, _ in timeline if k in FAIL_KINDS]

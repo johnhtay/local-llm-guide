@@ -24,3 +24,21 @@ Dated decision record for this release, per the disclosure review checklist in
   part of the guide, not of this derivative; the derivative never contained
   titles. Day-level dates in that table are an accepted residual risk,
   recorded here rather than silently removed.
+- Additional title generalization (2026-11-13): personal-finance topics
+  (a listed energy company, household asset work, public-finance research,
+  a salary calculation), tooling-experiment rows and device/purchase details
+  now display as neutral labels ("Investment research", "Tooling experiment",
+  "Mobile SIM troubleshooting", and so on). One prose paragraph in chapter 09
+  was generalized to match. The classifier keywords that produce these
+  categories remain in the published scripts: they are the method's
+  definition of the personal-admin and non-work categories, and changing them
+  would alter the published work/home split. They name topics, not people.
+- Token accounting: the guide's chapter 09 Gen tok column uses per-message
+  token sums at the same cutoff, matching this derivative. OpenCode's
+  session-level ledger columns can read slightly higher for the same
+  sessions; the difference is an accounting-basis difference, not missing
+  data, and both bases are documented in the scripts.
+- Manifest refreshed (2026-11-13): the mining scripts gained the snapshot
+  cutoff and the label overrides, so `source_script_sha256` moved. The data
+  files are byte-identical to the original build (verified by rebuilding from
+  the source database; all three output hashes unchanged).
