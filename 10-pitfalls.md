@@ -14,11 +14,11 @@ tooling and admin by nature):
 
 | Metric | Science & manuscripts | Games & creative |
 |---|---|---|
-| Sessions in the log | 109 | 47 |
+| Sessions in the log | 110 | 47 |
 | Sessions with at least one failure | 91 (83%) | 32 (68%) |
-| Failure events | 783 | 542 |
+| Failure events | 781 | 542 |
 | - command failed (non-zero exit) | 527 | 275 |
-| - agent fumble (mis-called tool) | 185 | 246 |
+| - agent fumble (mis-called tool) | 183 | 246 |
 | - external (fetch blocked, 404, timeout) | 65 | 18 |
 | - interrupted (escape) | 6 | 3 |
 | Same operation retried before yielding | 92% | 95% |
@@ -27,10 +27,10 @@ tooling and admin by nature):
 
 ### The science half
 
-Command failures dominate (527 of 783, retried 99.6% of the time): a one-off
+Command failures dominate (527 of 781, retried 99.6% of the time): a one-off
 analysis script crashes, the model reads the traceback, fixes the line, reruns.
 None of that reached me as a decision. Agent fumbles (a stale edit target, an
-out-of-range file read, a malformed command line) retried in-turn about 74% of
+out-of-range file read, a malformed command line) retried in-turn about 75% of
 the time; the rest ended with the model reporting what it could not do, which is the
 correct behavior. External failures are mostly publisher sites bot-blocking
 scripted fetches (403s). What actually reached me was rarely the crash and
@@ -58,15 +58,15 @@ the model's ceiling is not writing code, it is verifying experience.
 ### By tier and by model
 
 The same failure taxonomy, regrouped by where the model ran: every session with
-at least one tool call (361 of the 367, not just the two halves above; the
+at least one tool call (361 of the 368, not just the two halves above; the
 script is `scripts/mine_failures_by_model.py` in this repo). Failures per 100
 tool calls; "fumbles" are the model-attributable kind (mis-called tools).
 
 | Access tier | Sessions | Tool calls | Fails /100 calls | real | fumble | external | abort | Sessions w/ failure |
 |---|---|---|---|---|---|---|---|---|
-| Pasteur served | 168 | 15,955 | 5.9 | 647 | 219 | 71 | 8 | 77% |
-| Ollama Cloud | 107 | 11,491 | 7.0 | 464 | 166 | 178 | 1 | 82% |
-| Local rig | 84 | 10,449 | 7.3 | 407 | 312 | 27 | 12 | 69% |
+| Pasteur served | 168 | 15,986 | 5.9 | 647 | 218 | 71 | 8 | 77% |
+| Ollama Cloud | 107 | 11,489 | 7.0 | 464 | 164 | 178 | 1 | 82% |
+| Local rig | 84 | 10,448 | 7.2 | 407 | 311 | 27 | 12 | 68% |
 | Free tier | 2 | 41 | 0.0 | 0 | 0 | 0 | 0 | 0% |
 
 The same table, drawn:
@@ -80,9 +80,9 @@ nearly the same height on every tier; the differences live in the fumble and
 external segments. Segment labels are rounded to one decimal; the free tier
 (2 sessions, 41 calls, 0 failures) is in the table only.*
 
-The headline rates separate the tiers less than expected (5.9 to 7.3 per 100).
+The headline rates separate the tiers less than expected (5.9 to 7.2 per 100).
 Split by kind, the real fact appears: command failures land at nearly the same
-rate everywhere (3.9 to 4.1 per 100), because a non-zero exit is driven by the
+rate everywhere (3.9 to 4.0 per 100), because a non-zero exit is driven by the
 task and the environment, not by which model typed the command. What separates
 the tiers is the fumble rate: the served proxy mis-calls tools least (1.4 per
 100), Ollama Cloud matches it (1.4), and the local fleet sits at 3.0 (the
@@ -93,28 +93,28 @@ fetch blocks, the bot-walls of benchmark-season web research.
 
 | Model | Tier | Sessions | Tool calls | Fails /100 calls | Fumbles /100 calls | Sessions w/ failure |
 |---|---|---|---|---|---|---|
-| medium (served) | Pasteur served | 141 | 14,283 | 5.9 | 1.3 | 78% |
+| medium (served) | Pasteur served | 140 | 14,304 | 5.8 | 1.3 | 79% |
 | sage-a1.5 | Local rig | 14 | 4,838 | 6.6 | 2.9 | 100% |
 | minimax-m3 (ollama-cloud) | Ollama Cloud | 34 | 3,656 | 5.7 | 1.2 | 82% |
 | minimax-m3.1-flash (ollama-cloud) | Ollama Cloud | 19 | 2,860 | 6.8 | 0.6 | 79% |
 | occamy-1.0 | Local rig | 13 | 2,733 | 7.8 | 3.4 | 77% |
 | glm-5.3-flash (ollama-cloud) | Ollama Cloud | 13 | 2,335 | 8.0 | 2.0 | 100% |
-| big (served) | Pasteur served | 25 | 1,637 | 6.6 | 2.3 | 72% |
+| big (served) | Pasteur served | 26 | 1,647 | 6.6 | 2.2 | 69% |
 | flint | Local rig | 10 | 1,119 | 6.2 | 2.4 | 60% |
 | kimi-k2.7-code (ollama-cloud) | Ollama Cloud | 7 | 803 | 7.2 | 3.4 | 100% |
 | cybertiel-coder-35b | Local rig | 9 | 775 | 9.5 | 2.3 | 78% |
 | glm-5.2 (ollama-cloud) | Ollama Cloud | 10 | 564 | 13.7 | 2.7 | 90% |
 | kimi-k3.1-pro (ollama-cloud) | Ollama Cloud | 5 | 467 | 4.3 | 1.3 | 60% |
-| glm-5.3 (ollama-cloud) | Ollama Cloud | 5 | 394 | 8.4 | 0.8 | 80% |
+| glm-5.3 (ollama-cloud) | Ollama Cloud | 5 | 393 | 8.1 | 0.5 | 80% |
 | mistral-large-4 (ollama-cloud) | Ollama Cloud | 8 | 320 | 7.8 | 1.6 | 62% |
 | qwen3.8-27b | Local rig | 17 | 137 | 7.3 | 2.9 | 35% |
-| Other models (under 4 sessions each) | mixed | 31 | 1,015 | 8.3 | 3.3 | 65% |
+| Other models (under 4 sessions each) | mixed | 31 | 1,013 | 8.1 | 3.1 | 61% |
 
 The per-model rates need two honesty flags before any ranking. Denominators
 first: qwen3.8-27b's low session-failure share (35%) reflects its chat-era
 sessions (137 tool calls across 17 sessions), not excellence. The cleanest
-multi-session rate still belongs to the served tier (litellm/medium: 5.9 per
-100 over 141 sessions and 14,283 calls; kimi-k3.1-pro's 4.3 is a five-session
+multi-session rate still belongs to the served tier (litellm/medium: 5.8 per
+100 over 140 sessions and 14,304 calls; kimi-k3.1-pro's 4.3 is a five-session
 sample). On the rig, sage-a1.5 (4,838 calls over 14 sessions, 6.6 per 100)
 remains the cleanest local rate, while occamy-1.0 has drifted to 7.8 per 100
 over 13 sessions and 2,733 calls as its game-fix sessions piled up. Single-session dominance
@@ -126,12 +126,12 @@ measurements: one pathological session can dominate a small sample.
 ### What this teaches
 
 - Mechanical errors are the models' problem, and they mostly solve them alone:
-  92-96% of failures are retried in the same turn, and the ones that are not
+  92-95% of failures are retried in the same turn, and the ones that are not
   usually end with an honest report rather than a hallucinated success.
 - Experiential errors are the human's problem, by construction: quality bugs in
   rendered output (papers, figures) and playability bugs in games surface only
   through the person looking at the result.
-- The intervention gap between the halves (20% vs 34% of sessions) is the price
+- The intervention gap between the halves (20% vs 36% of sessions) is the price
   of output you can only judge by experiencing it. A paper's numbers can be
   checked by a script; a game's fun cannot.
 

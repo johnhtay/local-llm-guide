@@ -84,17 +84,31 @@ SPAN_COVERAGE = 0.8  # min fraction of assistant msgs with a stream-end stamp to
 V2_CUTOVER = datetime(2026, 10, 22, tzinfo=timezone.utc)
 MEDIUM_SWAP = datetime(2026, 10, 29, tzinfo=timezone.utc)
 
-LABEL_OVERRIDES = {
-    # This guide's own build session, displayed with the repo joke John asked for.
-    "Local LLM setup tutorial":
-        "Local LLM setup tutorial (for this very Gitlab repo :) )",
-    # Home-log rows: a 31-char filename and CJK glyphs that overflow the Task
-    # column or do not render in the PDF font (DejaVu Serif has no CJK).
-    "Resume review: Yang_Ryan_Huang_Resume_2026.pdf":
-        "Resume review (Yang CV)",
-    "CSV ROI calculation with salary\u533a\u5206":
-        "CSV ROI calculation with salary groups",
-}
+# Label overrides: display-only renames for the runner's printed tables.
+# Patterns are case-insensitive substrings (never full titles), so the file
+# itself carries no third-party names, file names or CJK glyphs.
+LABEL_OVERRIDES = [
+    ("local llm setup tutorial",
+     "Local LLM setup tutorial (for this very Gitlab repo :) )"),
+    ("resume review:", "Resume review (third-party CV)"),
+    ("cv and github", "CV and GitHub evaluation"),
+    ("cv authenticity check", "CV authenticity check"),
+    ("cv ai check", "CV authenticity check"),
+    ("cv evaluation", "CV authenticity check"),
+    ("skills file for", "Writing-style skills file"),
+    ("academic writing style skill", "Academic writing style skill"),
+    ("csv roi calculation", "CSV ROI calculation with salary groups"),
+]
+
+
+def label_for(task):
+    low = task.lower()
+    for needle, label in LABEL_OVERRIDES:
+        if needle in low:
+            return label
+    return task
+
+
 # Rows wrapped in <mark> per cell: GitLab renders a coloured highlight in both
 # light and dark mode; pandoc keeps the text (highlight becomes plain) in the PDF.
 # The highlighted rows are all sessions spent building this guide; the overrides
@@ -108,7 +122,7 @@ HIGHLIGHT = frozenset({
 NON_WORK = re.compile(
     r"vulcan|ludwig|\bVUL\b|investment|econ-finance|BdF|household asset|vignette"
     r"|fiscal|market data|IPO\b|ROI\b|heic|aldimobile|LDLC"
-    r"|windows 11|\bCV\b|subah|riaz|resume review|resume:"
+    r"|windows 11|\bCV\b|resume review|resume:"
     r"|horse|weapon|enemy|shooter|shotgun|projectile|\bfps\b|rocket\b"
     r"|godot|snake|modelgen|three\.js|game\b|milankovitch|creative|free will"
     r"|dog and cat|map settings|html implementation|level-up"
@@ -244,7 +258,7 @@ def main():
                     and streamed_msgs / max(total_msgs, 1) >= SPAN_COVERAGE
                     else None)
         span_str = fmt_sec(span_med) if span_med is not None else "n/a"
-        task = LABEL_OVERRIDES.get(task, task)
+        task = label_for(task)
         share = f"{tools / gen * 100:.0f}%" if gen else "0%"
         marks = ROW_MARKS.get((date, task), "")
         pct = max(gen_tok, 1)

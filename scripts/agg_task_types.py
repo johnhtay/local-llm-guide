@@ -53,7 +53,7 @@ CATS = [
      r"|sentinel|rocket\b"),
     ("Personal & admin",
      r"vulcan|ludwig|investment|econ-finance|household|bdf|fiscal|market data|ipo\b|roi\b"
-     r"|heic|aldimobile|ldlc|windows|cv\b|resume|subah|riaz|laptop|asus|tuf"
+     r"|heic|aldimobile|ldlc|windows|cv\b|resume|laptop|asus|tuf"
      r"|planning: research|shopping|constructs"),
 ]
 
