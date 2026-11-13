@@ -1,0 +1,4 @@
+pricing_model,sessions,input_tokens_including_cache,generated_tokens_including_reasoning,prompt_usd_per_million,output_usd_per_million,cost_usd,rate_date
+GLM-5.3,2,11942251,188990,0.07,1.40,1.10054357,2026-11-10
+GLM-5.3-Flash,6,365993853,3746729,0.04,0.08,14.93949244,2026-11-10
+Total,8,377936104,3935719,,,16.04003601,2026-11-10

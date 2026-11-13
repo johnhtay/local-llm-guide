@@ -83,6 +83,17 @@ Speeds depend on model (MoE *active* parameters matter: see 02) and context leng
   Nov 2026. **(est.)** numbers are bandwidth-based estimates: verify on your machine.
 - Benchmark scores in 05 are provider-published, not independently replicated.
 
+## Session log data
+
+The tables in [09](09-runtimes.md) and [10](10-pitfalls.md) are generated from
+this guide's own OpenCode session database by the scripts in `scripts/`. A
+deidentified, content-free derivative of that database (368 sessions, 37,964
+tool events, cutoff 2026-11-10 20:28 UTC) is in `data/deidentified/` with a
+field dictionary (`data/deidentified/README.md`), a build manifest
+(`manifest.json`) and the build script (`scripts/build_deidentified.py`). The
+dated rate captures behind the cost figures in [12](12-hardware-and-costs.md)
+are in `data/cost/`.
+
 ## Printing
 
 ```sh

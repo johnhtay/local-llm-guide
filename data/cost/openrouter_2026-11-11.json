@@ -1,0 +1,26 @@
+{
+  "source": "https://openrouter.ai/api/v1/models",
+  "retrieved_utc": "2026-11-11T21:27:22.361060+00:00",
+  "full_response_sha256": "469fee85752d5fa4d1110fb4dbbbbf625f225d319d72d9c23d03e551b2b2fffb",
+  "note": "Selected records from the public models endpoint. Prices in the response are USD per token.",
+  "records": [
+    {
+      "id": "z-ai/glm-5.3-flash",
+      "name": "Z.ai: GLM 5.3 Flash",
+      "pricing": {
+        "prompt": "0.0000000399",
+        "completion": "0.0000000784",
+        "input_cache_read": "0.00000003"
+      }
+    },
+    {
+      "id": "z-ai/glm-5.3",
+      "name": "Z.ai: GLM 5.3",
+      "pricing": {
+        "prompt": "0.0000000699",
+        "completion": "0.0000014",
+        "input_cache_read": "0.0000000689"
+      }
+    }
+  ]
+}

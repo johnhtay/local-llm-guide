@@ -1,0 +1,67 @@
+{
+  "cutoff_utc": "2026-11-10T20:28:00+00:00",
+  "source_quick_check": "ok",
+  "source_script_sha256": {
+    "agg_task_types.py": "3dd6ce9a9411e3a43455c164fc4383fdf2c3cc474ed6ec8502189e2052d9b843",
+    "mine_errors.py": "e1e8599aac1578e1a46e82bd55be9a6d08c59e10e5633e0b7c47c088da44f0dc",
+    "mine_runtimes.py": "f24582a77cea33801a32bea00d29a71964186120ece1e4d3a1d5113edf9356eb"
+  },
+  "sessions": 368,
+  "work_sessions": 290,
+  "tool_events": 37964,
+  "task_group_counts": {
+    "fleet_tooling_config": 147,
+    "games_creative": 47,
+    "other": 36,
+    "personal_admin": 23,
+    "science_manuscripts": 110,
+    "tutorial_documentation": 5
+  },
+  "failure_rates_by_tier": {
+    "institutional": {
+      "sessions": 168,
+      "tool_calls": 15986,
+      "failure_events": 944,
+      "failures_per_100_calls": 5.905
+    },
+    "local": {
+      "sessions": 84,
+      "tool_calls": 10448,
+      "failure_events": 757,
+      "failures_per_100_calls": 7.245
+    },
+    "public_cloud": {
+      "sessions": 107,
+      "tool_calls": 11489,
+      "failure_events": 807,
+      "failures_per_100_calls": 7.024
+    },
+    "public_free": {
+      "sessions": 2,
+      "tool_calls": 41,
+      "failure_events": 0,
+      "failures_per_100_calls": 0.0
+    }
+  },
+  "privacy": {
+    "status": "deidentified_content_free_not_anonymous",
+    "excluded": [
+      "prompts",
+      "responses",
+      "titles",
+      "paths",
+      "commands",
+      "URLs",
+      "model IDs",
+      "original database IDs",
+      "exact event timestamps"
+    ],
+    "automated_content_checks": "passed",
+    "manual_disclosure_review_required": true
+  },
+  "output_sha256": {
+    "sessions.csv": "97143e340dfed3e886cb8d3f1c78108296b304498c7246f2dffe0a315e7150e5",
+    "tool_events.csv": "d3a8a55599ee21b65123e60a025721dcf0fc0d71d95c68e58fbffa699feea4f6",
+    "deidentified_opencode.db": "5c263c4d61f0c82be59c2b4af87610a65acad90163781e71b6268a59228302cb"
+  }
+}
