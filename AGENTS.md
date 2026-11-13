@@ -33,6 +33,4 @@ degradation"). Keep this file short enough that an agent actually re-reads it.
 - Rebuild the PDF after content changes: the pandoc command is in README
   ("Printing" section), with `--resource-path=".:beginner"`; verify with PyMuPDF,
   not by eye.
-- When pushing: the authoring directory has its own git history but no remote;
-  publishing goes through the clone of edid/local-llms: copy changed files there
-  and push from that clone.
+

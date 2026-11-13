@@ -450,7 +450,7 @@ holds up anyway.
 | 08-06 | kimi-k2.7-code (ollama-cloud) | Find MMM XML examples in mmm_beastx (@explore subagent) | 1 | 163 | 7m06s | -1m59s | -0% | 7m05s | n/a | 19,849 | 0 (0%) | 19,849 (100%) | 47 |
 | 08-06 | kimi-k2.7-code (ollama-cloud) | Find MMM XML examples in beastX (@explore subagent) | 1 | 75 | 6m54s | 0m40s | 10% | 7m34s | n/a | 7,498 | 0 (0%) | 7,498 (100%) | 18 |
 | 07-31 | kimi-k2.7-code (ollama-cloud) | Continue from previous session with figures backup | 6 | 127 | 25m57s | 0m02s | 0% | 26m00s | n/a | 138,394 | 0 (0%) | 138,394 (100%) | 89 |
-| 07-27 | glm-5.2 (ollama-cloud) | John H. Tay academic writing style skill | 16 | 172 | 48m33s | 5m02s | 10% | 53m36s | n/a | 140,013 | 0 (0%) | 140,013 (100%) | 48 |
+| 07-27 | glm-5.2 (ollama-cloud) | Academic writing style skill | 16 | 172 | 48m33s | 5m02s | 10% | 53m36s | n/a | 140,013 | 0 (0%) | 140,013 (100%) | 48 |
 | 07-23 | glm-5.2 (ollama-cloud) | D3.js skills update for manuscript restart | 8 | 81 | 17m06s | 3m28s | 20% | 20m34s | n/a | 61,294 | 0 (0%) | 61,294 (100%) | 60 |
 | 07-23 | glm-5.2 (ollama-cloud) | GitLab manuscript continuation with D3.js diagrams | 3 | 33 | 6m59s | 2m01s | 29% | 9m00s | n/a | 11,512 | 0 (0%) | 11,512 (100%) | 27 |
 | 07-22 | glm-5.2 (ollama-cloud) | GitLab session continuation | 4 | 24 | 4m54s | 0m24s | 8% | 5m18s | n/a | 3,599 | 0 (0%) | 3,599 (100%) | 12 |
@@ -458,7 +458,7 @@ holds up anyway.
 | 07-22 | glm-5.2 (ollama-cloud) | GitLab git commit troubleshooting | 2 | 14 | 1m43s | 0m09s | 10% | 1m53s | n/a | 3,425 | 0 (0%) | 3,425 (100%) | 33 |
 | 07-20 | glm-5.2 (ollama-cloud) | Rewriting main.tex and references.bib from PDFs | 3 | 32 | 7m29s | 1m47s | 24% | 9m17s | n/a | 19,668 | 0 (0%) | 19,668 (100%) | 44 |
 | 07-17 | glm-5.2 (ollama-cloud) | Mixed-effects & TDR molecular clocks summary | 3 | 41 | 5m28s | 0m00s | 0% | 5m28s | n/a | 25,833 | 0 (0%) | 25,833 (100%) | 79 |
-| 07-17 | glm-5.2 (ollama-cloud) | Skills file for John H Tay writing style | 2 | 38 | 21m20s | 6m32s | 31% | 27m52s | n/a | 17,272 | 0 (0%) | 17,272 (100%) | 13 |
+| 07-17 | glm-5.2 (ollama-cloud) | Writing-style skills file | 2 | 38 | 21m20s | 6m32s | 31% | 27m52s | n/a | 17,272 | 0 (0%) | 17,272 (100%) | 13 |
 | 07-17 | glm-5.2 (ollama-cloud) | Find Trends journals author guidelines (@general subagent) | 1 | 23 | 2m13s | 1m19s | 60% | 3m33s | n/a | 6,874 | 0 (0%) | 6,874 (100%) | 51 |
 | 06-18 | kimi-k2.7-code (ollama-cloud) | BEASTX directory activity summary to PDF | 4 | 111 | 10m30s | 0m03s | 1% | 10m34s | n/a | 28,397 | 0 (0%) | 28,397 (100%) | 45 |
 | 06-04 | kimi-k2.6 (ollama-cloud) | relaxed_clock.png title and X-label update | 4 | 13 | 3m12s | 0m00s | 0% | 3m12s | n/a | 9,366 | 0 (0%) | 9,366 (100%) | 49 |
@@ -720,10 +720,10 @@ above.
 | 10-26 | cybertiel-coder-35b (local) | Milankovitch cycles visualizer | 1 | 2 | 3m50s | 0m00s | 0% | 3m50s | 10.4s | 14,179 | 61 |
 | 10-23 | cybertiel-coder-35b (local) | Open-ended creative project | 9 | 309 | 1h41m19s | 13m57s | 14% | 1h55m17s | 7.7s | 237,107 | 39 |
 | 10-23 | cybertiel-coder-35b (local) | Hypothetical free will | 2 | 8 | 3m02s | 0m00s | 0% | 3m02s | 9.2s | 14,258 | 78 |
-| 10-23 | strata (local) | subah-riaz CV AI check | 1 | 21 | 6m40s | 0m21s | 5% | 7m01s | 18.0s | 10,027 | 25 |
-| 10-23 | flint (local) | Subah Riaz CV evaluation | 1 | 14 | 6m12s | 0m05s | 1% | 6m18s | 17.7s | 12,800 | 34 |
+| 10-23 | strata (local) | CV authenticity check | 1 | 21 | 6m40s | 0m21s | 5% | 7m01s | 18.0s | 10,027 | 25 |
+| 10-23 | flint (local) | CV authenticity check | 1 | 14 | 6m12s | 0m05s | 1% | 6m18s | 17.7s | 12,800 | 34 |
 | 10-23 | swift1.5-qwen3.8-27b (local) | CV authenticity and GitHub repos check | 1 | 14 | 8m27s | 0m04s | 1% | 8m32s | 49.3s | 7,319 | 14 |
-| 10-23 | swift1.5-qwen3.8-27b-val (local) | subah-riaz CV and GitHub evaluation | 1 | 20 | 8m57s | 0m06s | 1% | 9m03s | 19.4s | 9,238 | 17 |
+| 10-23 | swift1.5-qwen3.8-27b-val (local) | CV and GitHub evaluation | 1 | 20 | 8m57s | 0m06s | 1% | 9m03s | 19.4s | 9,238 | 17 |
 | 10-23 | qwen3.8-27b (local) | Milankovitch cycles visualization app | 2 | 12 | 9m56s | 0m01s | 0% | 9m57s | 9.7s | 20,957 | 35 |
 | 10-23 | nemotron-3.5-bolt-74b (local) | Milankovitch cycles visualization | 1 | 1 | 11m38s | 0m00s | 0% | 11m38s | 5m49s | 17,618 | 25 |
 | 10-23 | ornith1.5-35b (local) | Milankovitch cycles visualization | 1 | 8 | 6m55s | 0m01s | 0% | 6m56s | 11.0s | 15,903 | 38 |
